@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electricity Monitoring Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --light: #f8f9ff;
+            --dark: #1a1a2e;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --danger: #f72585;
+            --info: #4895ef;
+            --text: #2b2d42;
+            --text-light: #8d99ae;
+            --card-bg: #ffffff;
+            --sidebar-bg: #1a1a2e;
+            --sidebar-text: #e2e2e2;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--light);
+            color: var(--text);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .admin-title {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px 10px;
+            border-radius: 6px;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-item.active {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px;
+            background-color: var(--light);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .dashboard-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .filter-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            background-color: var(--card-bg);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .filter-label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid #e0e0e0;
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+        }
+        
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--card-bg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .map-container {
+            height: 400px;
+            margin-top: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .fault-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+        
+        .fault-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .fault-list::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .fault-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-left: 4px solid transparent;
+        }
+        
+        .fault-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left-color: var(--accent);
+        }
+        
+        .fault-priority {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .priority-critical {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .priority-standard {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .fault-location {
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: var(--dark);
+        }
+        
+        .fault-details {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .percentage-label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .no-faults {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .no-faults i {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Custom marker clusters */
+        .marker-cluster-small {
+            background-color: rgba(113, 128, 250, 0.6);
+        }
+        .marker-cluster-small div {
+            background-color: rgba(67, 97, 238, 0.8);
+            color: white;
+        }
+        
+        .marker-cluster-medium {
+            background-color: rgba(253, 156, 66, 0.6);
+        }
+        .marker-cluster-medium div {
+            background-color: rgba(247, 37, 133, 0.8);
+            color: white;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="logo">EM</div>
+            <span class="admin-title">Eskom Monitor</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i> Dashboard</li>
+            <li class="nav-item"><i class="fas fa-bell" style="margin-right: 10px;"></i> Alerts</li>
+            <li class="nav-item"><i class="fas fa-users" style="margin-right: 10px;"></i> Technician Dispatch</li>
+            <li class="nav-item"><i class="fas fa-chart-bar" style="margin-right: 10px;"></i> Reports</li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">Electricity Monitoring Dashboard</h1>
+                <p class="dashboard-subtitle">Real-time monitoring of electricity usage and faults</p>
+            </div>
+            <div class="last-updated">Last updated: {{ last_updated }}</div>
+        </div>
+        
+        <!-- Filter -->
+        <div class="filter-container">
+            <span class="filter-label"><i class="fas fa-filter" style="margin-right: 8px;"></i> Filter by Area:</span>
+            <select id="placeFilter" class="filter-select">
+                <option value="all">All Areas</option>
+                {% for place in places %}
+                <option value="{{ place }}">{{ place }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <!-- First Row - Two Cards -->
+        <div class="dashboard-grid">
+            <!-- Stats Card -->
+            <div class="card" style="grid-column: span 6;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-chart-pie" style="margin-right: 10px; color: var(--accent);"></i> Electricity Usage Overview</h2>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="stat-value" id="totalMeters">{{ total_meters }}</div>
+                        <div class="stat-label">Total Meters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #4cc9f0, #4895ef);">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-value" id="activeMeters">{{ active_meters }}</div>
+                        <div class="stat-label">Active Meters</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, #7209b7, #560bad);">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <div class="stat-value" id="totalRevenue">R{{ "%.2f"|format(total_revenue) }}</div>
+                        <div class="stat-label">Total Revenue</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fault Trend Analysis -->
+            <div class="card" style="grid-column: span 6;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-chart-line" style="margin-right: 10px; color: var(--accent);"></i> Fault Trend Analysis</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="faultTrendChart"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Row - Map -->
+        <div class="dashboard-grid" style="margin-top: 20px;">
+            <div class="card" style="grid-column: span 12;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-map-marked-alt" style="margin-right: 10px; color: var(--accent);"></i> Fault Localization Map</h2>
+                </div>
+                <div class="map-container" id="faultMap"></div>
+            </div>
+        </div>
+        
+        <!-- Third Row - Two Cards -->
+        <div class="dashboard-grid" style="margin-top: 20px;">
+            <!-- Fault Distribution -->
+            <div class="card" style="grid-column: span 6;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-chart-pie" style="margin-right: 10px; color: var(--accent);"></i> Fault Distribution by User Type</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="faultDistributionChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Priority Faults -->
+            <div class="card" style="grid-column: span 6;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-exclamation-triangle" style="margin-right: 10px; color: var(--accent);"></i> Priority Faults</h2>
+                    <div class="stat-value" id="outageCount" style="color: var(--danger);">{{ outage_count }}</div>
+                </div>
+                <div class="fault-list" id="priorityFaults">
+                    {% if priority_faults %}
+                        {% for fault in priority_faults %}
+                        <div class="fault-item">
+                            <div>
+                                <div class="fault-location">{{ fault.location }}</div>
+                                <div class="fault-details">{{ fault.type }} • {{ fault.days }} day(s) outstanding</div>
+                            </div>
+                            <span class="fault-priority {{ 'priority-critical' if fault.status == 'Critical' else 'priority-standard' }}">
+                                {{ fault.status }}
+                            </span>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="no-faults">
+                            <i class="fas fa-check-circle"></i>
+                            <div>No faults recorded</div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script>
+        // Initialize charts and map
+        document.addEventListener('DOMContentLoaded', function() {
+            // Color palette
+            const colors = {
+                residential: '#4361ee',
+                business: '#4cc9f0',
+                industrial: '#f72585',
+                westville: '#7209b7',
+                morningside: '#3a0ca3',
+                durbanNorth: '#4895ef',
+                newlands: '#560bad',
+                default: '#1a1a2e'
+            };
+
+            // Fault Trend Chart with percentages
+            const trendCtx = document.getElementById('faultTrendChart').getContext('2d');
+            const monthlyData = {{ monthly_outages | tojson }};
+            
+            // Calculate percentage changes
+            const percentageChanges = [];
+            for (let i = 1; i < monthlyData.length; i++) {
+                const change = ((monthlyData[i].count - monthlyData[i-1].count) / monthlyData[i-1].count) * 100;
+                percentageChanges.push(change.toFixed(1) + '%');
+            }
+            // Add empty for first month
+            percentageChanges.unshift('');
+            
+            const trendChart = new Chart(trendCtx, {
+                type: 'line',
+                data: {
+                    labels: monthlyData.map(item => item.Month),
+                    datasets: [{
+                        label: 'Fault Occurrences',
+                        data: monthlyData.map(item => item.count),
+                        borderColor: colors.industrial,
+                        backgroundColor: 'rgba(247, 37, 133, 0.1)',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: colors.industrial,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                afterLabel: function(context) {
+                                    const index = context.dataIndex;
+                                    if (index > 0) {
+                                        return `Change: ${percentageChanges[index]}`;
+                                    }
+                                    return '';
+                                }
+                            },
+                            backgroundColor: 'rgba(26, 26, 46, 0.9)',
+                            titleFont: { size: 14, weight: 'bold' },
+                            bodyFont: { size: 12 },
+                            padding: 12,
+                            cornerRadius: 8
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Number of Faults',
+                                color: colors.default
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            },
+                            ticks: {
+                                color: colors.default
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Month',
+                                color: colors.default
+                            },
+                            grid: {
+                                color: 'rgba(0,0,0,0.05)'
+                            },
+                            ticks: {
+                                color: colors.default
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Fault Distribution Chart
+            const distCtx = document.getElementById('faultDistributionChart').getContext('2d');
+            const userTypeData = {{ user_type_outages | tojson }};
+            const totalFaults = userTypeData.reduce((sum, item) => sum + item.count, 0);
+            
+            const distChart = new Chart(distCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: userTypeData.map(item => `${item['User Type']} (${((item.count / totalFaults) * 100).toFixed(1)}%)`),
+                    datasets: [{
+                        data: userTypeData.map(item => item.count),
+                        backgroundColor: [
+                            colors.residential,
+                            colors.business,
+                            colors.industrial
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 16,
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const percentage = Math.round((value / totalFaults) * 100);
+                                    return `${label}: ${value} (${percentage}%)`;
+                                }
+                            },
+                            backgroundColor: 'rgba(26, 26, 46, 0.9)',
+                            bodyFont: { size: 12 },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    cutout: '65%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+            
+            // Initialize map with custom icons and clustering
+            const map = L.map('faultMap').setView([-29.8587, 31.0218], 11);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Create marker cluster group
+            const markers = L.markerClusterGroup({
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: 40
+            });
+            
+            // Custom icons for different places
+            const placeIcons = {
+                'Chatsworth': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#f72585; width:22px; height:22px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Kwamashu': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#4361ee; width:22px; height:22px; transform:rotate(45deg); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Berea': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#4cc9f0; width:22px; height:22px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Newlands': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#560bad; width:22px; height:22px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Westville': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#7209b7; width:22px; height:22px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Morningside': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#3a0ca3; width:22px; height:22px; clip-path: polygon(0% 0%, 100% 0%, 50% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'Durban North': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#4895ef; width:22px; height:22px; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                }),
+                'default': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#1a1a2e; width:22px; height:22px; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [22, 22]
+                })
+            };
+            
+            // Add outage markers with custom icons to cluster group
+            const outageLocations = {{ outage_locations | tojson }};
+            
+            outageLocations.forEach(location => {
+                if (location.lat && location.lon && location.outage_count > 0) {
+                    const icon = placeIcons[location.place] || placeIcons['default'];
+                    const popupContent = `
+                        <div style="min-width: 200px;">
+                            <h3 style="margin: 0 0 10px 0; color: ${colors.primary};">${location.place}</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                                <div>
+                                    <div style="font-weight: bold;">Total Customers</div>
+                                    <div>${location.total_customers}</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: bold;">Active Outages</div>
+                                    <div>${location.outage_count}</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: bold;">Critical</div>
+                                    <div style="color: ${colors.danger};">${location.critical_faults}</div>
+                                </div>
+                                <div>
+                                    <div style="font-weight: bold;">Standard</div>
+                                    <div style="color: ${colors.success};">${location.standard_faults}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const marker = L.marker([location.lat, location.lon], { icon: icon });
+                    marker.bindPopup(popupContent);
+                    markers.addLayer(marker);
+                }
+            });
+            
+            // Add cluster group to map
+            map.addLayer(markers);
+            
+            // Filter functionality
+            document.getElementById('placeFilter').addEventListener('change', function() {
+                const place = this.value;
+                
+                fetch('/filter_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `place=${encodeURIComponent(place)}`
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Update stats
+                    document.getElementById('totalMeters').textContent = data.total_meters;
+                    document.getElementById('activeMeters').textContent = data.active_meters;
+                    document.getElementById('totalRevenue').textContent = 'R' + data.total_revenue.toFixed(2);
+                    
+                    // Update outage count
+                    document.getElementById('outageCount').textContent = data.outage_count;
+                    
+                    // Update trend chart
+                    trendChart.data.labels = data.monthly_outages.map(item => item.Month);
+                    trendChart.data.datasets[0].data = data.monthly_outages.map(item => item.count);
+                    
+                    // Recalculate percentages
+                    const newPercentageChanges = [];
+                    for (let i = 1; i < data.monthly_outages.length; i++) {
+                        const change = ((data.monthly_outages[i].count - data.monthly_outages[i-1].count) / 
+                                      data.monthly_outages[i-1].count) * 100;
+                        newPercentageChanges.push(change.toFixed(1) + '%');
+                    }
+                    newPercentageChanges.unshift('');
+                    
+                    trendChart.update();
+                    
+                    // Update distribution chart
+                    const newTotalFaults = data.user_type_outages.reduce((sum, item) => sum + item.count, 0);
+                    distChart.data.labels = data.user_type_outages.map(item => 
+                        `${item['User Type']} (${((item.count / newTotalFaults) * 100).toFixed(1)}%)`);
+                    distChart.data.datasets[0].data = data.user_type_outages.map(item => item.count);
+                    distChart.update();
+                    
+                    // Update priority faults
+                    updatePriorityFaults(data.priority_faults, data.outage_count);
+                });
+            });
+            
+            // Function to update priority faults based on filter
+            function updatePriorityFaults(faults, outageCount) {
+                const faultsContainer = document.getElementById('priorityFaults');
+                faultsContainer.innerHTML = '';
+                
+                if (outageCount === 0) {
+                    faultsContainer.innerHTML = `
+                        <div class="no-faults">
+                            <i class="fas fa-check-circle"></i>
+                            <div>No faults recorded in this area</div>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Sort with critical faults first
+                faults.sort((a, b) => {
+                    if (a.status === 'Critical' && b.status !== 'Critical') return -1;
+                    if (a.status !== 'Critical' && b.status === 'Critical') return 1;
+                    return 0;
+                });
+                
+                // Display the faults
+                faults.forEach(fault => {
+                    const faultItem = document.createElement('div');
+                    faultItem.className = 'fault-item';
+                    faultItem.innerHTML = `
+                        <div>
+                            <div class="fault-location">${fault.location}</div>
+                            <div class="fault-details">${fault.type} • ${fault.days} day(s) outstanding</div>
+                        </div>
+                        <span class="fault-priority ${fault.status === 'Critical' ? 'priority-critical' : 'priority-standard'}">
+                            ${fault.status}
+                        </span>
+                    `;
+                    faultsContainer.appendChild(faultItem);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

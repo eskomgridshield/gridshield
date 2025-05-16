@@ -1,0 +1,151 @@
+Name,Surname,Address,Place,Last Purchase Date,Electricity Bought (R),Watts Used,Watts Allocated,Meter Type,Meter Status,Power Outage,User Type
+Danielle,Johnson,"3321 Brittany Bypass, Chatsworth, Durban",Chatsworth,2023-06-08,754.47,4696.17,7544.7,Prepaid,Active,Yes,Residential
+Clayton,Hall,"083 Robinson Radial, Kwamashu, Durban",Kwamashu,2023-12-18,80.19,438.52,801.9,Prepaid,Active,Yes,Business
+Lisa,Smith,"65423 Garcia Light, Newlands, Durban",Newlands,2023-07-30,259.42,2061.44,2594.2,Prepaid,Active,No,Business
+Michael,Cooper,"0781 Miller Hill, Isipingo, Durban",Isipingo,2025-02-18,197.71,1934.8,1977.1,Smart meter,Active,Yes,Business
+Courtney,Mcclure,"9310 Kendra Common, Berea, Durban",Berea,2025-03-10,391.03,2627.64,3910.3,Smart meter,Active,No,Residential
+Jesse,Garcia,"7525 Clark Grove, Newlands, Durban",Newlands,2024-11-11,974.46,6716.63,9744.6,Smart meter,Not Active,Yes,Residential
+Sharon,Wong,"283 Steven Groves, Chatsworth, Durban",Chatsworth,2025-05-03,678.2,6012.47,6782.0,Prepaid,Active,Yes,Residential
+Danielle,Hawkins,"503 Linda Locks, Berea, Durban",Berea,2023-12-09,480.74,4408.65,4807.4,Prepaid,Not Active,No,Business
+Carl,Gentry,"537 Wilkerson Row, Durban North, Durban",Durban North,2024-05-06,303.63,2940.13,3036.3,Prepaid,Active,Yes,Industrial
+Douglas,Taylor,"884 Hurst Locks, Phoenix, Durban",Phoenix,2024-02-21,410.48,4083.3,4104.8,Prepaid,Not Active,Yes,Business
+Jeffrey,Bright,"710 Eric Estate, Durban North, Durban",Durban North,2025-01-20,814.79,5708.28,8147.9,Prepaid,Active,No,Residential
+Erin,Carlson,"6978 Maddox Wall, Durban North, Durban",Durban North,2023-05-24,524.27,4940.41,5242.7,Smart meter,Active,No,Industrial
+Erin,Wilson,"451 Graham Motorway, Phoenix, Durban",Phoenix,2023-05-18,757.74,5830.72,7577.4,Smart meter,Not Active,No,Residential
+Stephanie,Liu,"8281 Skinner Parkways, Durban North, Durban",Durban North,2024-08-31,534.05,2913.0,5340.5,Prepaid,Active,Yes,Residential
+James,Brooks,"88095 Smith Lake, Phoenix, Durban",Phoenix,2025-03-28,451.05,2398.52,4510.5,Smart meter,Not Active,No,Industrial
+Tricia,Roman,"03911 Cabrera Trace, Newlands, Durban",Newlands,2024-07-02,696.27,3880.14,6962.7,Smart meter,Not Active,Yes,Residential
+Katie,Anderson,"8248 Brandt Plains, Westville, Durban",Westville,2024-12-22,200.25,1004.5,2002.5,Smart meter,Active,Yes,Business
+Jessica,Harris,"6578 Martinez Fork, Westville, Durban",Westville,2023-07-04,532.28,3190.78,5322.8,Smart meter,Active,Yes,Industrial
+Matthew,Chapman,"93010 Carlos Bypass, Kwamashu, Durban",Kwamashu,2025-03-13,514.18,2858.5,5141.8,Smart meter,Not Active,Yes,Business
+Mark,Palmer,"7382 Sanchez Mountains, Umlazi, Durban",Umlazi,2025-02-01,884.11,8606.59,8841.1,Prepaid,Not Active,Yes,Residential
+Richard,Davis,"656 Owens Stream, Newlands, Durban",Newlands,2023-06-27,171.97,1268.52,1719.7,Prepaid,Not Active,No,Residential
+Emily,Joyce,"06513 James Mission, Durban North, Durban",Durban North,2023-09-01,767.5,6484.87,7675.0,Smart meter,Not Active,No,Industrial
+Robert,Ramirez,"17810 Tanya Terrace, Morningside, Durban",Morningside,2025-03-05,478.91,2988.17,4789.1,Prepaid,Not Active,Yes,Industrial
+Joel,Russell,"3602 Smith Loaf, Kwamashu, Durban",Kwamashu,2023-12-07,268.61,1638.81,2686.1,Prepaid,Active,Yes,Industrial
+Sara,Glover,"6872 Kenneth Centers, Chatsworth, Durban",Chatsworth,2024-08-07,866.65,4640.29,8666.5,Prepaid,Not Active,No,Residential
+Jill,Brown,"0097 Brian Pass, Durban North, Durban",Durban North,2023-07-17,175.7,1700.35,1757.0,Smart meter,Active,No,Industrial
+Melissa,Jones,"36193 Christine Manor, Berea, Durban",Berea,2024-10-07,139.61,1158.05,1396.1,Smart meter,Not Active,No,Residential
+Brandy,Mills,"3534 Anderson Rue, Morningside, Durban",Morningside,2024-01-04,101.46,838.8,1014.6,Prepaid,Active,No,Industrial
+Stephen,Hickman,"07991 Amanda Parkways, Isipingo, Durban",Isipingo,2023-12-07,286.22,1703.31,2862.2,Smart meter,Active,No,Residential
+David,Bailey,"35427 Carr Valley, Phoenix, Durban",Phoenix,2024-10-04,489.5,4587.8,4895.0,Prepaid,Not Active,Yes,Business
+Allison,Contreras,"412 Wilson Coves, Umlazi, Durban",Umlazi,2024-12-12,999.32,9173.9,9993.2,Prepaid,Active,Yes,Industrial
+Angela,Nelson,"353 Wagner Glen, Berea, Durban",Berea,2025-04-18,507.29,4729.59,5072.9,Prepaid,Active,No,Business
+Rebekah,Williams,"640 Matthew Curve, Umlazi, Durban",Umlazi,2024-09-21,301.94,2693.41,3019.4,Smart meter,Not Active,No,Business
+Tina,Martin,"8680 Charles Spurs, Newlands, Durban",Newlands,2025-04-17,732.49,4229.39,7324.9,Smart meter,Active,Yes,Industrial
+Edward,Johnson,"9826 Bobby Lakes, Kwamashu, Durban",Kwamashu,2025-04-13,565.09,4938.82,5650.9,Prepaid,Active,No,Industrial
+Sarah,Stanton,"53315 Dickson Summit, Newlands, Durban",Newlands,2023-09-13,199.56,1956.47,1995.6,Prepaid,Active,Yes,Industrial
+Sara,Young,"26025 Pham Way, Kwamashu, Durban",Kwamashu,2024-12-06,691.45,4270.41,6914.5,Prepaid,Active,Yes,Residential
+Lisa,Adams,"160 Walker Viaduct, Kwamashu, Durban",Kwamashu,2025-04-28,448.26,3549.48,4482.6,Smart meter,Not Active,Yes,Residential
+Steven,Torres,"30365 Lin Trail, Isipingo, Durban",Isipingo,2023-12-18,302.33,1709.49,3023.3,Smart meter,Not Active,No,Residential
+Michael,Hicks,"850 Natalie Green, Chatsworth, Durban",Chatsworth,2023-10-01,485.37,4849.95,4853.7,Prepaid,Active,Yes,Residential
+Beverly,Terrell,"19655 Obrien Pass, Newlands, Durban",Newlands,2023-08-13,175.83,1185.98,1758.3,Prepaid,Active,No,Business
+Paul,Ray,"0608 Michael Cliff, Westville, Durban",Westville,2024-10-12,466.28,3597.86,4662.8,Smart meter,Active,No,Residential
+Samantha,Hanson,"148 Estrada Islands, Chatsworth, Durban",Chatsworth,2024-03-23,301.24,2846.29,3012.4,Prepaid,Not Active,No,Residential
+Heidi,Spencer,"66299 Sullivan Village, Kwamashu, Durban",Kwamashu,2023-05-16,731.73,4403.54,7317.3,Smart meter,Not Active,No,Residential
+Kevin,Clark,"957 Ramos Forest, Umlazi, Durban",Umlazi,2024-06-16,652.57,5968.89,6525.7,Prepaid,Active,No,Residential
+Thomas,Santana,"214 Davis Terrace, Phoenix, Durban",Phoenix,2023-11-14,980.81,5696.46,9808.1,Smart meter,Not Active,Yes,Industrial
+Emily,Walker,"20037 Stanley Roads, Chatsworth, Durban",Chatsworth,2024-08-05,947.8,8013.74,9478.0,Prepaid,Active,No,Residential
+James,Horton,"6320 Kimberly Forges, Kwamashu, Durban",Kwamashu,2023-09-29,190.69,1074.96,1906.9,Smart meter,Not Active,Yes,Industrial
+Linda,Dominguez,"0831 Anderson Mountain, Isipingo, Durban",Isipingo,2024-10-15,697.96,5817.26,6979.6,Smart meter,Not Active,Yes,Residential
+Amanda,Hansen,"7986 Merritt Summit, Durban North, Durban",Durban North,2025-03-15,977.4,8849.24,9774.0,Smart meter,Active,Yes,Residential
+Thomas,Green,"48734 Jones Heights, Isipingo, Durban",Isipingo,2023-11-14,812.12,7569.22,8121.2,Prepaid,Not Active,Yes,Business
+Joseph,Flores,"122 Patrick Drives, Chatsworth, Durban",Chatsworth,2024-11-14,878.56,8164.43,8785.6,Prepaid,Active,No,Business
+Jason,Perry,"8760 Marissa Loaf, Isipingo, Durban",Isipingo,2025-04-17,829.51,7761.41,8295.1,Prepaid,Active,Yes,Business
+Kayla,Shah,"96705 Molina Walk, Berea, Durban",Berea,2025-04-07,314.67,1682.57,3146.7,Smart meter,Not Active,No,Business
+Stephanie,Barnes,"893 Robinson Mews, Newlands, Durban",Newlands,2024-05-27,942.28,5254.82,9422.8,Smart meter,Active,No,Business
+Anthony,Rogers,"627 Tina Place, Umlazi, Durban",Umlazi,2023-06-05,616.74,4149.7,6167.4,Smart meter,Not Active,Yes,Residential
+Rebecca,Vargas,"016 Michelle Falls, Berea, Durban",Berea,2023-06-24,230.57,1204.02,2305.7,Smart meter,Active,Yes,Industrial
+Jorge,Murphy,"5564 King Common, Isipingo, Durban",Isipingo,2024-05-15,116.48,969.25,1164.8,Smart meter,Not Active,Yes,Business
+Andrew,Ryan,"3100 James Brooks, Westville, Durban",Westville,2024-09-09,343.82,2421.17,3438.2,Smart meter,Not Active,Yes,Industrial
+Elijah,Martinez,"193 Lyons Trafficway, Durban North, Durban",Durban North,2024-02-26,681.68,4700.68,6816.8,Prepaid,Not Active,No,Business
+Gary,Lawson,"124 Beth Inlet, Newlands, Durban",Newlands,2024-08-05,338.68,2049.32,3386.8,Smart meter,Not Active,No,Residential
+Erica,Rubio,"3193 Heidi Hollow, Morningside, Durban",Morningside,2025-03-06,253.02,1863.73,2530.2,Prepaid,Active,No,Industrial
+Gabrielle,Trujillo,"058 Stanley Cliff, Newlands, Durban",Newlands,2024-06-11,651.29,4347.97,6512.9,Prepaid,Not Active,Yes,Industrial
+Deborah,Smith,"7165 Zimmerman Mews, Durban North, Durban",Durban North,2023-09-29,73.2,455.61,732.0,Smart meter,Active,No,Residential
+Jessica,Sheppard,"9877 Petersen Ramp, Berea, Durban",Berea,2023-12-10,596.89,5128.32,5968.9,Smart meter,Not Active,No,Industrial
+Marcus,Sanchez,"47379 Rogers Park, Durban North, Durban",Durban North,2025-03-06,673.26,3384.97,6732.6,Prepaid,Not Active,Yes,Residential
+Mark,Freeman,"4549 Peters Path, Phoenix, Durban",Phoenix,2023-10-11,542.06,2846.41,5420.6,Prepaid,Active,No,Industrial
+Christopher,Cortez,"8377 Mcguire Course, Phoenix, Durban",Phoenix,2023-12-30,684.2,6800.58,6842.0,Smart meter,Not Active,No,Business
+Jeffrey,Holt,"9578 Coleman Summit, Newlands, Durban",Newlands,2024-07-16,902.35,7866.94,9023.5,Smart meter,Not Active,No,Business
+Mark,Warner,"4431 Leslie Summit, Durban North, Durban",Durban North,2024-07-05,313.45,2786.06,3134.5,Smart meter,Active,No,Industrial
+Stephanie,Vaughn,"37498 Hooper Village, Morningside, Durban",Morningside,2023-10-13,727.87,4492.75,7278.7,Smart meter,Not Active,Yes,Residential
+Kenneth,Ward,"0824 Terri Plaza, Phoenix, Durban",Phoenix,2023-12-28,269.7,2284.29,2697.0,Prepaid,Active,No,Residential
+Heidi,Martinez,"1094 Mendoza Junctions, Berea, Durban",Berea,2023-10-06,565.48,4002.96,5654.8,Prepaid,Not Active,No,Business
+Tammy,King,"1167 Barbara Spur, Kwamashu, Durban",Kwamashu,2023-06-26,68.56,644.69,685.6,Smart meter,Not Active,Yes,Industrial
+Edward,Shepherd,"1318 Obrien Turnpike, Isipingo, Durban",Isipingo,2024-09-07,765.8,7096.85,7658.0,Smart meter,Active,No,Business
+Jeremiah,Mills,"7496 Carroll Circle, Durban North, Durban",Durban North,2024-08-31,464.04,2387.54,4640.4,Smart meter,Not Active,Yes,Business
+Susan,Garcia,"34123 Andrea Estate, Morningside, Durban",Morningside,2023-05-18,981.69,7530.17,9816.9,Smart meter,Active,Yes,Residential
+Ricky,Norris,"4034 Warner Motorway, Berea, Durban",Berea,2023-07-10,873.51,5161.26,8735.1,Smart meter,Not Active,No,Residential
+Grace,Bradshaw,"936 Amy Rue, Durban North, Durban",Durban North,2023-09-08,360.5,3174.62,3605.0,Smart meter,Not Active,No,Business
+Rebekah,Serrano,"02499 Gonzales Mountain, Westville, Durban",Westville,2024-10-31,496.79,4344.49,4967.9,Prepaid,Not Active,Yes,Residential
+Kevin,Powell,"8877 Carly Meadows, Chatsworth, Durban",Chatsworth,2024-12-06,88.25,454.94,882.5,Prepaid,Active,Yes,Industrial
+Marcus,Wright,"39904 Kathryn Extensions, Kwamashu, Durban",Kwamashu,2024-05-15,276.62,2038.08,2766.2,Prepaid,Active,No,Residential
+April,Ramos,"2967 Theodore Lodge, Westville, Durban",Westville,2024-01-29,209.4,1682.79,2094.0,Prepaid,Active,No,Business
+Manuel,Garcia,"56746 Shawn Island, Chatsworth, Durban",Chatsworth,2023-11-28,74.39,487.98,743.9,Smart meter,Not Active,Yes,Industrial
+Marcus,Cordova,"8087 Brown Path, Chatsworth, Durban",Chatsworth,2024-02-21,706.08,5744.82,7060.8,Prepaid,Not Active,Yes,Industrial
+Cindy,Jimenez,"0348 Sara Mill, Kwamashu, Durban",Kwamashu,2025-03-30,379.84,2712.78,3798.4,Smart meter,Active,No,Residential
+Helen,Martinez,"932 Pierce Plaza, Umlazi, Durban",Umlazi,2024-03-27,831.21,4594.67,8312.1,Smart meter,Not Active,Yes,Business
+Christopher,Gay,"71274 Perry Orchard, Berea, Durban",Berea,2024-05-16,747.11,7342.13,7471.1,Smart meter,Not Active,No,Residential
+John,Arnold,"3982 Joshua Turnpike, Berea, Durban",Berea,2025-03-09,612.85,4051.87,6128.5,Prepaid,Active,No,Industrial
+Robert,Villa,"404 Monroe Prairie, Morningside, Durban",Morningside,2024-10-09,762.95,5988.58,7629.5,Smart meter,Not Active,Yes,Residential
+Tracy,Hernandez,"755 Gibson Islands, Morningside, Durban",Morningside,2025-03-21,222.75,1350.0,2227.5,Smart meter,Not Active,No,Business
+Jacob,Terry,"636 Louis Mountains, Kwamashu, Durban",Kwamashu,2024-11-13,886.1,6892.93,8861.0,Prepaid,Active,Yes,Industrial
+Robin,James,"270 Wayne Ramp, Berea, Durban",Berea,2024-01-28,577.42,3580.94,5774.2,Smart meter,Not Active,No,Business
+Molly,Sawyer,"1870 Robert Shoal, Umlazi, Durban",Umlazi,2023-09-12,329.52,2313.89,3295.2,Prepaid,Not Active,No,Residential
+Charles,Harrington,"5961 Phelps Walks, Morningside, Durban",Morningside,2024-07-03,554.38,3951.35,5543.8,Smart meter,Not Active,No,Industrial
+Norman,Stewart,"780 Jimmy Spur, Westville, Durban",Westville,2025-04-30,288.83,1618.4,2888.3,Prepaid,Not Active,Yes,Business
+Karl,Perez,"61172 Berger Cape, Newlands, Durban",Newlands,2024-01-22,225.89,1373.85,2258.9,Smart meter,Not Active,No,Industrial
+Laura,Carter,"6238 Knight Turnpike, Chatsworth, Durban",Chatsworth,2023-10-02,331.43,2255.18,3314.3,Smart meter,Active,Yes,Residential
+George,Miller,"9379 Jesse Route, Westville, Durban",Westville,2023-11-29,975.58,7577.13,9755.8,Prepaid,Not Active,Yes,Residential
+Steve,Estrada,"4821 Landry Radial, Umlazi, Durban",Umlazi,2024-01-03,320.12,2366.83,3201.2,Smart meter,Active,Yes,Industrial
+Danielle,Coleman,"7436 Rodriguez Light, Westville, Durban",Westville,2024-08-02,158.38,843.65,1583.8,Smart meter,Active,Yes,Business
+Michael,Phillips,"406 Smith Way, Phoenix, Durban",Phoenix,2024-10-29,820.58,7997.07,8205.8,Prepaid,Active,Yes,Residential
+Kimberly,Beltran,"743 Robinson Field, Newlands, Durban",Newlands,2024-09-09,626.0,5605.02,6260.0,Prepaid,Not Active,No,Business
+John,Campos,"210 Kramer Bypass, Morningside, Durban",Morningside,2024-08-08,867.16,8628.38,8671.6,Smart meter,Active,Yes,Business
+Michael,Anderson,"5623 Kristin Wells, Durban North, Durban",Durban North,2024-02-24,250.47,2079.44,2504.7,Prepaid,Active,Yes,Industrial
+Alyssa,Mcintyre,"47451 Mccarty Divide, Newlands, Durban",Newlands,2024-12-21,198.71,1399.43,1987.1,Smart meter,Not Active,Yes,Residential
+Tammy,Dalton,"685 Krystal Bridge, Durban North, Durban",Durban North,2023-12-07,721.61,6144.46,7216.1,Smart meter,Active,Yes,Business
+Amanda,Gibson,"496 Rodriguez Fort, Westville, Durban",Westville,2024-05-16,610.3,5504.62,6103.0,Prepaid,Not Active,Yes,Industrial
+Angel,Henson,"593 Cynthia Mountain, Newlands, Durban",Newlands,2025-04-21,665.25,6347.85,6652.5,Prepaid,Active,Yes,Residential
+Jacqueline,Banks,"20047 Colton Plain, Phoenix, Durban",Phoenix,2023-08-29,615.29,5612.18,6152.9,Smart meter,Not Active,Yes,Business
+Paul,Watson,"869 Nicole Shoal, Morningside, Durban",Morningside,2023-07-31,338.89,2376.48,3388.9,Smart meter,Not Active,No,Industrial
+Martha,Gilbert,"0537 Sampson Walk, Chatsworth, Durban",Chatsworth,2024-02-21,87.87,629.16,878.7,Smart meter,Not Active,Yes,Industrial
+Cory,Jennings,"506 Lopez Crossing, Chatsworth, Durban",Chatsworth,2025-03-04,963.82,8847.67,9638.2,Prepaid,Not Active,Yes,Residential
+Madison,Davis,"90053 Kristin Ford, Phoenix, Durban",Phoenix,2023-07-08,543.02,3915.8,5430.2,Smart meter,Active,No,Business
+Maria,Spencer,"335 Kristina Ranch, Morningside, Durban",Morningside,2023-05-18,496.51,3496.29,4965.1,Smart meter,Active,Yes,Residential
+Joshua,Riggs,"84210 Alexis Turnpike, Isipingo, Durban",Isipingo,2025-01-17,708.99,4566.67,7089.9,Smart meter,Active,No,Business
+John,Morris,"40268 Julie Mountains, Chatsworth, Durban",Chatsworth,2024-04-28,289.78,1616.86,2897.8,Smart meter,Active,No,Business
+Kimberly,Palmer,"78390 Ellis Burgs, Berea, Durban",Berea,2023-07-02,228.2,1553.79,2282.0,Smart meter,Not Active,Yes,Residential
+Yolanda,Boone,"1771 Marc Drive, Durban North, Durban",Durban North,2023-07-06,571.76,5510.83,5717.6,Smart meter,Not Active,Yes,Business
+David,Weber,"856 Chavez Rapids, Umlazi, Durban",Umlazi,2024-04-14,628.43,3894.06,6284.3,Prepaid,Not Active,Yes,Industrial
+Cory,Miles,"836 Beasley Loop, Newlands, Durban",Newlands,2024-02-03,138.55,1380.14,1385.5,Prepaid,Not Active,Yes,Business
+Maria,Ross,"156 Ortega Landing, Phoenix, Durban",Phoenix,2023-09-11,936.02,6046.04,9360.2,Smart meter,Not Active,No,Business
+Gloria,Wells,"11615 Angela Radial, Morningside, Durban",Morningside,2024-07-25,483.95,2769.75,4839.5,Prepaid,Active,Yes,Residential
+Anna,Santiago,"5604 Bell Ports, Westville, Durban",Westville,2024-06-13,372.88,3333.02,3728.8,Smart meter,Active,No,Business
+Jason,Douglas,"15851 Andrews Valley, Westville, Durban",Westville,2024-04-13,600.93,4987.54,6009.3,Prepaid,Not Active,No,Industrial
+Megan,Villegas,"980 Johnson Groves, Isipingo, Durban",Isipingo,2024-11-11,574.32,4432.11,5743.2,Smart meter,Not Active,Yes,Business
+Kathryn,Dorsey,"0229 Jones Streets, Durban North, Durban",Durban North,2024-09-18,413.82,3840.28,4138.2,Smart meter,Active,No,Industrial
+Teresa,Davis,"366 Peterson Land, Morningside, Durban",Morningside,2024-01-13,917.76,6338.19,9177.6,Prepaid,Not Active,Yes,Industrial
+Jennifer,Frank,"910 Eric River, Phoenix, Durban",Phoenix,2023-06-23,967.09,6440.79,9670.9,Prepaid,Not Active,Yes,Industrial
+Emily,Nelson,"679 Perry Forge, Newlands, Durban",Newlands,2024-12-22,64.58,369.45,645.8,Prepaid,Active,No,Business
+William,Reed,"49784 Jeffrey Rapid, Westville, Durban",Westville,2023-06-27,642.1,4486.62,6421.0,Prepaid,Not Active,No,Business
+Adrian,Turner,"24451 Tyler Meadows, Isipingo, Durban",Isipingo,2023-09-29,732.78,6446.27,7327.8,Prepaid,Active,Yes,Industrial
+David,Patel,"88516 Ryan Mount, Westville, Durban",Westville,2025-04-30,759.43,5445.0,7594.3,Prepaid,Active,No,Residential
+Christian,Edwards,"9664 Richard Islands, Phoenix, Durban",Phoenix,2023-09-26,334.49,1720.86,3344.9,Smart meter,Active,No,Industrial
+Laurie,Montgomery,"516 John Radial, Isipingo, Durban",Isipingo,2024-03-22,459.15,2856.37,4591.5,Smart meter,Active,Yes,Business
+Alexandria,Foster,"5352 William Crescent, Phoenix, Durban",Phoenix,2024-07-01,629.02,4348.24,6290.2,Prepaid,Not Active,Yes,Residential
+William,Bullock,"5231 Jonathan Extensions, Durban North, Durban",Durban North,2024-08-25,656.01,4787.46,6560.1,Prepaid,Not Active,No,Business
+Eric,Malone,"27799 Maldonado Port, Newlands, Durban",Newlands,2024-09-26,120.17,1168.79,1201.7,Smart meter,Not Active,No,Residential
+Cynthia,Weber,"527 Taylor Roads, Morningside, Durban",Morningside,2024-01-06,239.26,1656.51,2392.6,Smart meter,Active,Yes,Business
+Laura,Vargas,"8147 Johnson Land, Berea, Durban",Berea,2025-02-19,391.01,2533.5,3910.1,Smart meter,Active,No,Industrial
+Justin,Newman,"99867 Shannon Valleys, Westville, Durban",Westville,2024-08-02,587.63,4953.13,5876.3,Prepaid,Not Active,No,Residential
+Denise,Morris,"8207 Lisa Villages, Durban North, Durban",Durban North,2024-02-06,811.84,4948.18,8118.4,Prepaid,Not Active,Yes,Industrial
+Toni,Miller,"203 Ritter Pine, Chatsworth, Durban",Chatsworth,2024-06-25,664.02,4345.79,6640.2,Smart meter,Active,No,Industrial
+Chelsea,Cox,"6659 Kristina Rue, Phoenix, Durban",Phoenix,2024-01-30,914.15,6064.1,9141.5,Smart meter,Active,Yes,Residential
+Cameron,Davis,"644 Mathew Prairie, Phoenix, Durban",Phoenix,2024-10-12,882.64,6027.8,8826.4,Smart meter,Active,No,Industrial
+Donald,Bailey,"629 Kyle Lane, Morningside, Durban",Morningside,2024-09-26,759.23,5081.96,7592.3,Prepaid,Not Active,Yes,Business
+Latasha,Li,"816 Smith Inlet, Phoenix, Durban",Phoenix,2023-10-03,867.13,7475.6,8671.3,Smart meter,Not Active,Yes,Residential
+Stephanie,Peterson,"3322 Kenneth Turnpike, Berea, Durban",Berea,2023-08-02,301.24,1692.35,3012.4,Smart meter,Not Active,No,Residential
+William,Fernandez,"805 Carla Drives, Isipingo, Durban",Isipingo,2023-09-19,691.09,5084.61,6910.9,Smart meter,Active,Yes,Residential
+Henry,Schwartz,"270 Diaz Stravenue, Morningside, Durban",Morningside,2023-11-16,337.08,2373.54,3370.8,Prepaid,Active,Yes,Industrial

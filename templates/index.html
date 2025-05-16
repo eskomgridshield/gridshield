@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eskom Smart System</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
+        }
+        
+        /* Header Styles */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 120px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: #e03c31;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+            font-weight: 400;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: #e03c31;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .card-header h2 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        
+        .card-body {
+            padding: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #e03c31;
+            outline: none;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #e03c31;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            width: 100%;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #c0342a;
+        }
+        
+        .role-indicator {
+            display: inline-block;
+            margin-left: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .admin-indicator {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        
+        .tech-indicator {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <!-- Replace with actual Eskom logo -->
+        <img src="{{ url_for('static', filename='images/eskom_logo2.jpg') }}" alt="Eskom Logo" class="logo">
+        <h1>Smart System Portal</h1>
+        <p class="subtitle">Single login for all system roles</p>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>System Login <span id="roleIndicator" class="role-indicator admin-indicator">Admin</span></h2>
+        </div>
+        <div class="card-body">
+            <form action="/login" method="POST">
+                <div class="form-group">
+                    <label for="username">Username/ID</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username or ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="role">Login As</label>
+                    <select id="role" name="role" required onchange="updateRoleIndicator()">
+                        <option value="admin">Administrator</option>
+                        <option value="technician">Technician</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn">Login to System</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>&copy; 2025 Eskom Smart System. All rights reserved.</p>
+        <p>For assistance, please contact IT support.</p>
+    </div>
+
+    <script>
+        function updateRoleIndicator() {
+            const roleSelect = document.getElementById('role');
+            const roleIndicator = document.getElementById('roleIndicator');
+            
+            if (roleSelect.value === 'admin') {
+                roleIndicator.textContent = 'Admin';
+                roleIndicator.className = 'role-indicator admin-indicator';
+            } else {
+                roleIndicator.textContent = 'Technician';
+                roleIndicator.className = 'role-indicator tech-indicator';
+            }
+        }
+    </script>
+</body>
+</html>

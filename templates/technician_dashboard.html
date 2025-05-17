@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Dashboard</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;    /* Indigo */
+            --secondary: #6366F1;  /* Light Indigo */
+            --accent: #818CF8;     /* Lighter Indigo */
+            --light: #F8FAFC;      /* Lightest Gray */
+            --dark: #1E293B;       /* Dark Blue Gray */
+            --success: #34D399;    /* Emerald */
+            --warning: #F59E0B;    /* Amber */
+            --danger: #EF4444;     /* Red */
+            --sidebar-bg: #E0E7FF; /* Light Indigo */
+            --card-bg: rgb(255, 255, 255);    /* White */
+            --text: #1E293B;
+            --text-light: rgb(132, 148, 170);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            background-color: var(--light);
+            color: var(--text);
+        }
+        
+        .main-content {
+            padding: 30px;
+            background-color: var(--light);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .dashboard-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .filter-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            background-color: rgb(215, 240, 241);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .filter-label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 20px;
+        }
+        
+        .card {
+            background: rgb(215, 240, 241);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat-card {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: var(--card-bg);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+        
+        .stat-icon {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin-top: 15px;
+            position: relative;
+        }
+        
+        .map-container {
+            height: 400px;
+            margin-top: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .fault-list {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+        
+        .fault-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .fault-list::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+        
+        .fault-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background: var(--card-bg);
+            border-radius: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+            border-left: 4px solid transparent;
+        }
+        
+        .fault-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            border-left-color: var(--accent);
+        }
+        
+        .fault-priority {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .priority-critical {
+            background-color: var(--danger);
+            color: white;
+        }
+        
+        .priority-standard {
+            background-color: var(--success);
+            color: white;
+        }
+        
+        .fault-location {
+            font-weight: 600;
+            margin-bottom: 3px;
+            color: var(--dark);
+        }
+        
+        .fault-details {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+        
+        .percentage-label {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            color: var(--primary);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .no-faults {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .no-faults i {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+        
+        .logout-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+        
+        .view-faults-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+            margin-right: 10px;
+        }
+        
+        .view-faults-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 12px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            padding: 20px;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .close-modal:hover {
+            color: var(--danger);
+        }
+        
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .fault-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        
+        .fault-table th, .fault-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .fault-table th {
+            background-color: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .fault-table tr:hover {
+            background-color: rgba(79, 70, 229, 0.05);
+        }
+        
+        @media (max-width: 1200px) {
+            .dashboard-grid {
+                grid-template-columns: repeat(1, 1fr);
+            }
+            
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-content {
+                width: 95%;
+            }
+        }
+
+        /* Custom marker clusters */
+        .marker-cluster-small {
+            background-color: rgba(113, 128, 250, 0.6);
+        }
+        .marker-cluster-small div {
+            background-color: rgba(79, 70, 229, 0.8);
+            color: white;
+        }
+        
+        .marker-cluster-medium {
+            background-color: rgba(253, 156, 66, 0.6);
+        }
+        .marker-cluster-medium div {
+            background-color: rgba(239, 68, 68, 0.8);
+            color: white;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">Technician Dashboard</h1>
+                <p class="dashboard-subtitle">View and manage your assigned faulty areas</p>
+            </div>
+            <div style="display: flex; align-items: center;">
+                <button id="viewFaultsBtn" class="view-faults-btn"><i class="fas fa-tools"></i> View My Faults</button>
+                <div class="last-updated" style="margin-right: 20px;">Last updated: Just now</div>
+                <a href="/" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+        
+        <!-- Filter -->
+        <div class="filter-container">
+            <span class="filter-label"><i class="fas fa-filter" style="margin-right: 8px;"></i> Filter by Area:</span>
+            <select id="placeFilter" class="filter-select">
+                <option value="all">All Areas</option>
+                <option value="Chatsworth">Chatsworth</option>
+                <option value="Kwamashu">Kwamashu</option>
+                <option value="Berea">Berea</option>
+                <option value="Newlands">Newlands</option>
+                <option value="Westville">Westville</option>
+                <option value="Morningside">Morningside</option>
+                <option value="Durban North">Durban North</option>
+            </select>
+        </div>
+        
+        <!-- First Row - Stats Cards -->
+        <div class="dashboard-grid">
+            <!-- Stats Card -->
+            <div class="card" style="grid-column: span 4;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-tools" style="margin-right: 10px; color: var(--accent);"></i> My Assignments</h2>
+                </div>
+                <div class="stats-container">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="stat-value" id="totalFaults">12</div>
+                        <div class="stat-label">Total Faults</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, var(--success), var(--primary));">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-value" id="completedFaults">8</div>
+                        <div class="stat-label">Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, var(--danger), var(--warning));">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stat-value" id="pendingFaults">4</div>
+                        <div class="stat-label">Pending</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Completion Rate -->
+            <div class="card" style="grid-column: span 4;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-chart-line" style="margin-right: 10px; color: var(--accent);"></i> Completion Rate</h2>
+                </div>
+                <div class="chart-container">
+                    <canvas id="completionChart"></canvas>
+                </div>
+            </div>
+            
+            <!-- Priority Faults -->
+            <div class="card" style="grid-column: span 4;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-exclamation-triangle" style="margin-right: 10px; color: var(--accent);"></i> Priority Faults</h2>
+                    <div class="stat-value" id="priorityCount" style="color: var(--danger);">3</div>
+                </div>
+                <div class="fault-list" id="priorityFaults">
+                    <div class="fault-item">
+                        <div>
+                            <div class="fault-location">45 Smith Road, Chatsworth</div>
+                            <div class="fault-details">Power outage • 2 day(s) outstanding</div>
+                        </div>
+                        <span class="fault-priority priority-critical">
+                            Critical
+                        </span>
+                    </div>
+                    <div class="fault-item">
+                        <div>
+                            <div class="fault-location">78 Main Street, Berea</div>
+                            <div class="fault-details">Meter malfunction • 1 day outstanding</div>
+                        </div>
+                        <span class="fault-priority priority-critical">
+                            Critical
+                        </span>
+                    </div>
+                    <div class="fault-item">
+                        <div>
+                            <div class="fault-location">12 Beach Road, Durban North</div>
+                            <div class="fault-details">Flickering lights • 3 day(s) outstanding</div>
+                        </div>
+                        <span class="fault-priority priority-critical">
+                            Critical
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Second Row - Map -->
+        <div class="dashboard-grid" style="margin-top: 20px;">
+            <div class="card" style="grid-column: span 12;">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-map-marked-alt" style="margin-right: 10px; color: var(--accent);"></i> My Assigned Areas</h2>
+                </div>
+                <div class="map-container" id="assignedMap"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Faults Modal -->
+    <div id="faultsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2 class="modal-title"><i class="fas fa-tools"></i> My Assigned Faults</h2>
+            
+            <div class="filter-container" style="margin-bottom: 20px;">
+                <span class="filter-label"><i class="fas fa-filter" style="margin-right: 8px;"></i> Filter by Status:</span>
+                <select id="statusFilter" class="filter-select">
+                    <option value="all">All Statuses</option>
+                    <option value="pending">Pending</option>
+                    <option value="in-progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+            
+            <table class="fault-table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Address</th>
+                        <th>Problem</th>
+                        <th>Reported</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody id="faultsTableBody">
+                    <!-- Mock data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script>
+        const mockFaults = [
+            {
+                id: 1,
+                customer: "John Smith",
+                address: "45 Smith Road, Chatsworth",
+                problem: "Power outage - transformer issue",
+                reported: "2023-06-15 08:30",
+                status: "pending",
+                priority: "critical",
+                coordinates: [-29.8787, 30.8989]
+            },
+            {
+                id: 2,
+                customer: "Sarah Johnson",
+                address: "78 Main Street, Berea",
+                problem: "Meter malfunction - not recording usage",
+                reported: "2023-06-16 14:15",
+                status: "pending",
+                priority: "critical",
+                coordinates: [-29.8587, 31.0218]
+            },
+            {
+                id: 3,
+                customer: "David Wilson",
+                address: "12 Beach Road, Durban North",
+                problem: "Flickering lights - possible wiring issue",
+                reported: "2023-06-14 09:45",
+                status: "in-progress",
+                priority: "critical",
+                coordinates: [-29.8087, 31.0418]
+            },
+            {
+                id: 4,
+                customer: "Lisa Brown",
+                address: "34 Pine Avenue, Westville",
+                problem: "Power surges - damaging appliances",
+                reported: "2023-06-13 11:20",
+                status: "in-progress",
+                priority: "standard",
+                coordinates: [-29.8387, 30.9418]
+            },
+            {
+                id: 5,
+                customer: "Michael Davis",
+                address: "56 Valley View, Newlands",
+                problem: "No power - suspected cable theft",
+                reported: "2023-06-12 16:50",
+                status: "completed",
+                priority: "standard",
+                coordinates: [-29.8187, 30.9818]
+            },
+            {
+                id: 6,
+                customer: "Emma Thompson",
+                address: "89 Ridge Road, Morningside",
+                problem: "Meter box damaged - needs replacement",
+                reported: "2023-06-11 10:10",
+                status: "completed",
+                priority: "standard",
+                coordinates: [-29.8287, 31.0018]
+            }
+        ];
+
+        // Initialize charts and map when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize completion chart
+            const completionCtx = document.getElementById('completionChart').getContext('2d');
+            const completionChart = new Chart(completionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Completed', 'In Progress', 'Pending'],
+                    datasets: [{
+                        data: [8, 2, 4],
+                        backgroundColor: [
+                            '#34D399', // Green for completed
+                            '#F59E0B', // Amber for in progress
+                            '#EF4444'  // Red for pending
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 10
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 16,
+                                usePointStyle: true,
+                                pointStyle: 'circle',
+                                font: {
+                                    family: 'Poppins'
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value} (${percentage}%)`;
+                                }
+                            },
+                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
+                            bodyFont: { size: 12 },
+                            padding: 12,
+                            cornerRadius: 8
+                        }
+                    },
+                    cutout: '70%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+            
+            // Initialize map with assigned areas
+            const map = L.map('assignedMap').setView([-29.8587, 31.0218], 12);
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+                maxZoom: 18
+            }).addTo(map);
+            
+            // Create marker cluster group
+            const markers = L.markerClusterGroup({
+                spiderfyOnMaxZoom: true,
+                showCoverageOnHover: false,
+                zoomToBoundsOnClick: true,
+                maxClusterRadius: 40
+            });
+            
+            // Custom icons based on status
+            const statusIcons = {
+                'pending': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#EF4444; width:24px; height:24px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [24, 24]
+                }),
+                'in-progress': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#F59E0B; width:24px; height:24px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [24, 24]
+                }),
+                'completed': L.divIcon({
+                    className: 'custom-icon',
+                    html: '<div style="background-color:#34D399; width:24px; height:24px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [24, 24]
+                })
+            };
+            
+            // Add markers for each fault
+            mockFaults.forEach(fault => {
+                const icon = statusIcons[fault.status] || statusIcons['pending'];
+                const popupContent = `
+                    <div style="min-width: 200px;">
+                        <h3 style="margin: 0 0 10px 0; color: #4F46E5;">${fault.customer}</h3>
+                        <p><strong>Address:</strong> ${fault.address}</p>
+                        <p><strong>Problem:</strong> ${fault.problem}</p>
+                        <p><strong>Reported:</strong> ${fault.reported}</p>
+                        <p><strong>Status:</strong> <span style="color: ${
+                            fault.status === 'completed' ? '#34D399' : 
+                            fault.status === 'in-progress' ? '#F59E0B' : '#EF4444'
+                        };">${fault.status.replace('-', ' ')}</span></p>
+                    </div>
+                `;
+                
+                const marker = L.marker(fault.coordinates, { icon: icon });
+                marker.bindPopup(popupContent);
+                markers.addLayer(marker);
+            });
+            
+            // Add cluster group to map
+            map.addLayer(markers);
+            
+            // Modal functionality
+            const modal = document.getElementById('faultsModal');
+            const btn = document.getElementById('viewFaultsBtn');
+            const span = document.getElementsByClassName('close-modal')[0];
+            const faultsTableBody = document.getElementById('faultsTableBody');
+            
+            // Open modal when button is clicked
+            btn.onclick = function() {
+                modal.style.display = 'flex';
+                populateFaultsTable(mockFaults);
+            }
+            
+            // Close modal when X is clicked
+            span.onclick = function() {
+                modal.style.display = 'none';
+            }
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = 'none';
+                }
+            }
+            
+            // Status filter functionality
+            document.getElementById('statusFilter').addEventListener('change', function() {
+                const status = this.value;
+                let filteredFaults = mockFaults;
+                
+                if (status !== 'all') {
+                    filteredFaults = mockFaults.filter(fault => fault.status === status);
+                }
+                
+                populateFaultsTable(filteredFaults);
+            });
+            
+            // Function to populate faults table
+            function populateFaultsTable(faults) {
+                faultsTableBody.innerHTML = '';
+                
+                if (faults.length === 0) {
+                    faultsTableBody.innerHTML = `
+                        <tr>
+                            <td colspan="5" style="text-align: center; padding: 20px; color: var(--text-light);">
+                                No faults found with the selected criteria
+                            </td>
+                        </tr>
+                    `;
+                    return;
+                }
+                
+                faults.forEach(fault => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${fault.customer}</td>
+                        <td>${fault.address}</td>
+                        <td>${fault.problem}</td>
+                        <td>${fault.reported}</td>
+                        <td>
+                            <span style="display: inline-block; padding: 4px 8px; border-radius: 12px; 
+                                font-size: 0.8rem; font-weight: 500; 
+                                background-color: ${
+                                    fault.status === 'completed' ? 'rgba(52, 211, 153, 0.2)' : 
+                                    fault.status === 'in-progress' ? 'rgba(245, 158, 11, 0.2)' : 
+                                    'rgba(239, 68, 68, 0.2)'
+                                };
+                                color: ${
+                                    fault.status === 'completed' ? '#34D399' : 
+                                    fault.status === 'in-progress' ? '#F59E0B' : '#EF4444'
+                                };">
+                                ${fault.status.replace('-', ' ')}
+                            </span>
+                        </td>
+                    `;
+                    faultsTableBody.appendChild(row);
+                });
+            }
+            
+            // Filter functionality for the main dashboard
+            document.getElementById('placeFilter').addEventListener('change', function() {
+                const place = this.value;
+                
+                // In a real app, you would fetch filtered data from the server
+                // For this demo, we'll just filter our mock data
+                let filteredFaults = mockFaults;
+                
+                if (place !== 'all') {
+                    filteredFaults = mockFaults.filter(fault => 
+                        fault.address.toLowerCase().includes(place.toLowerCase()));
+                }
+                
+                // Update stats based on filtered data
+                document.getElementById('totalFaults').textContent = filteredFaults.length;
+                document.getElementById('completedFaults').textContent = 
+                    filteredFaults.filter(f => f.status === 'completed').length;
+                document.getElementById('pendingFaults').textContent = 
+                    filteredFaults.filter(f => f.status === 'pending').length;
+                document.getElementById('priorityCount').textContent = 
+                    filteredFaults.filter(f => f.priority === 'critical').length;
+                
+                // Update completion chart
+                completionChart.data.datasets[0].data = [
+                    filteredFaults.filter(f => f.status === 'completed').length,
+                    filteredFaults.filter(f => f.status === 'in-progress').length,
+                    filteredFaults.filter(f => f.status === 'pending').length
+                ];
+                completionChart.update();
+                
+                // Update priority faults list
+                updatePriorityFaults(filteredFaults);
+                
+                // Update map markers
+                markers.clearLayers();
+                filteredFaults.forEach(fault => {
+                    const icon = statusIcons[fault.status] || statusIcons['pending'];
+                    const popupContent = `
+                        <div style="min-width: 200px;">
+                            <h3 style="margin: 0 0 10px 0; color: #4F46E5;">${fault.customer}</h3>
+                            <p><strong>Address:</strong> ${fault.address}</p>
+                            <p><strong>Problem:</strong> ${fault.problem}</p>
+                            <p><strong>Reported:</strong> ${fault.reported}</p>
+                            <p><strong>Status:</strong> <span style="color: ${
+                                fault.status === 'completed' ? '#34D399' : 
+                                fault.status === 'in-progress' ? '#F59E0B' : '#EF4444'
+                            };">${fault.status.replace('-', ' ')}</span></p>
+                        </div>
+                    `;
+                    
+                    const marker = L.marker(fault.coordinates, { icon: icon });
+                    marker.bindPopup(popupContent);
+                    markers.addLayer(marker);
+                });
+                
+                // If no faults in this area, show a message
+                if (filteredFaults.length === 0) {
+                    const marker = L.marker([-29.8587, 31.0218]);
+                    marker.bindPopup(`No faults found in ${place === 'all' ? 'any area' : place}`);
+                    markers.addLayer(marker);
+                    map.setView([-29.8587, 31.0218], 10);
+                } else {
+                    // Fit map to show all markers
+                    map.fitBounds(markers.getBounds());
+                }
+            });
+            
+            // Function to update priority faults based on filter
+            function updatePriorityFaults(faults) {
+                const faultsContainer = document.getElementById('priorityFaults');
+                faultsContainer.innerHTML = '';
+                
+                // Get only critical priority faults
+                const criticalFaults = faults.filter(f => f.priority === 'critical');
+                
+                if (criticalFaults.length === 0) {
+                    faultsContainer.innerHTML = `
+                        <div class="no-faults">
+                            <i class="fas fa-check-circle"></i>
+                            <p>No critical faults in this area</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Display each critical fault
+                criticalFaults.forEach(fault => {
+                    // Calculate days outstanding
+                    const reportedDate = new Date(fault.reported);
+                    const currentDate = new Date();
+                    const daysOutstanding = Math.ceil((currentDate - reportedDate) / (1000 * 60 * 60 * 24));
+                    
+                    const faultElement = document.createElement('div');
+                    faultElement.className = 'fault-item';
+                    
+                    // Extract location from address (first part before comma)
+                    const location = fault.address;
+                    
+                    // Extract problem type (first part before hyphen or dash)
+                    const problemType = fault.problem.split('-')[0].trim();
+                    
+                    faultElement.innerHTML = `
+                        <div>
+                            <div class="fault-location">${location}</div>
+                            <div class="fault-details">${problemType} • ${daysOutstanding} day(s) outstanding</div>
+                        </div>
+                        <span class="fault-priority priority-critical">
+                            Critical
+                        </span>
+                    `;
+                    
+                    faultsContainer.appendChild(faultElement);
+                });
+            }
+            
+            // Initialize with all data on page load
+            updatePriorityFaults(mockFaults);
+        });
+
+            // Function to format date
+            function formatDate(dateString) {
+                const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+                return new Date(dateString).toLocaleDateString(undefined, options);
+            }
+    </script>
+</body>
+</html>

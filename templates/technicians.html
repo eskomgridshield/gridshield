@@ -1,0 +1,580 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technician Dispatch</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;    /* Indigo */
+            --secondary: #6366F1;  /* Light Indigo */
+            --accent: #818CF8;     /* Lighter Indigo */
+            --light: #F8FAFC;      /* Lightest Gray */
+            --dark: #1E293B;       /* Dark Blue Gray */
+            --success: #34D399;    /* Emerald */
+            --warning: #F59E0B;    /* Amber */
+            --danger: #EF4444;     /* Red */
+            --sidebar-bg: #E0E7FF; /* Light Indigo */
+            --card-bg: #FFFFFF;    /* White */
+            --text: #1E293B;
+            --text-light: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--light);
+            color: var(--text);
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg) !important;
+            color: var(--dark) !important;
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+        }
+        
+        .logo-container {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .admin-title {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 5px 10px;
+            border-radius: 6px;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(79, 70, 229, 0.1) !important;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+        }
+
+        .nav-item.active .nav-link {
+            color: white !important;
+        }
+        
+        .nav-link {
+            text-decoration: none !important;
+            color: var(--dark) !important;
+            display: block;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px;
+            background-color: var(--light);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .dashboard-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+
+        .card {
+            background: rgb(205, 226, 248);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-container {
+            display: flex;
+            align-items: center;
+            background-color: var(--light);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .filter-label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgb(252, 213, 240);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .tech-table th {
+            text-align: left;
+            padding: 12px 15px;
+            background-color: rgb(152, 70, 229);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .tech-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            vertical-align: middle;
+            background: var(--card-bg);
+        }
+        
+        .tech-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tech-table tr {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .tech-table tr:hover {
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+        }
+
+        .tech-table tr:hover td {
+            background-color: rgba(99, 102, 241, 0.03);
+        }
+
+        .tech-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tech-name {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .tech-username {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .status-available {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            color: white;
+        }
+        
+        .status-assigned {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+        }
+        
+        .status-onsite {
+            background: linear-gradient(135deg, #818CF8, #4F46E5);
+            color: white;
+        }
+        
+        .status-completed {
+            background: linear-gradient(135deg, #4F46E5, #4338CA);
+            color: white;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .action-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+        
+        .action-btn.assign {
+            background: linear-gradient(135deg, #34D399, #10B981);
+        }
+        
+        .action-btn.assign:hover {
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+        
+        .action-btn.complete {
+            background: linear-gradient(135deg, #4F46E5, #4338CA);
+        }
+        
+        .action-btn.complete:hover {
+            background: linear-gradient(135deg, #4338CA, #3730A3);
+        }
+
+        /* Modal styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: modalAppear 0.3s forwards;
+        }
+
+        .modal-content h3 {
+            color: var(--dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+
+        .modal-body {
+            margin-top: 20px;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 1rem;
+            }
+            
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            
+            .tech-table th,
+            .tech-table td {
+                padding: 0.75rem;
+                font-size: 0.8125rem;
+            }
+            
+            .action-group {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="logo">EM</div>
+            <span class="admin-title">Monitor</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+            <li class="nav-item"><a href="/alerts" class="nav-link">Alerts</a></li>
+            <li class="nav-item active"><a href="/technicians" class="nav-link">Technician Dispatch</a></li>
+            <li class="nav-item"><a href="/reports" class="nav-link">Reports</a></li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">Technician Dispatch</h1>
+                <p class="dashboard-subtitle">Manage field technician assignments and status updates</p>
+            </div>
+            <div class="last-updated">Last updated: {{ last_updated }}</div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-user-gear"></i> Active Technicians</h2>
+                <div class="filter-container">
+                    <span class="filter-label">Filter:</span>
+                    <select class="filter-select">
+                        <option>All Statuses</option>
+                        <option>Available</option>
+                        <option>Assigned</option>
+                        <option>Onsite</option>
+                        <option>Completed</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="tech-table">
+                    <thead>
+                        <tr>
+                            <th>Technician</th>
+                            <th>Status</th>
+                            <th>Current Assignment</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tech in technicians %}
+                        <tr data-tech-id="{{ tech.id }}">
+                            <td>
+                                <div class="tech-info">
+                                    <div class="tech-name">{{ tech.full_name }}</div>
+                                    <div class="tech-username">@{{ tech.username }}</div>
+                                </div>
+                            </td>
+                            <td>
+                                <span class="status-badge status-{{ tech.status|lower }}">
+                                    {{ tech.status }}
+                                </span>
+                            </td>
+                            <td>{{ tech.current_assignment or 'Available for assignment' }}</td>
+                            <td>
+                                <div class="action-group">
+                                    <button class="action-btn assign" onclick="showAssignmentModal({{ tech.id }})">
+                                        <i class="fas fa-tasks"></i> Assign
+                                    </button>
+                                    <button class="action-btn complete" onclick="updateStatus({{ tech.id }}, 'Completed')">
+                                        <i class="fas fa-check"></i> Complete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assignment Modal -->
+    <div id="assignmentModal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <h3>Assign Technician</h3>
+            <div class="modal-body">
+                <select id="assignmentSelect" class="filter-select">
+                    {% for assignment in demoAssignments %}
+                    <option value="{{ assignment.id }}">{{ assignment.location }} - {{ assignment.issue }}</option>
+                    {% endfor %}
+                </select>
+                <div class="modal-actions">
+                    <button class="action-btn" onclick="closeModal()">Cancel</button>
+                    <button class="action-btn assign" onclick="assignTechnician()">Confirm Assignment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Enhanced JavaScript
+        let activeTechId = null;
+        const demoAssignments = [
+            { id: 1, location: 'Chatsworth Industrial', issue: 'Transformer Failure' },
+            { id: 2, location: 'Durban North Substation', issue: 'Voltage Regulation' },
+            { id: 3, location: 'Kwamashu Zone 5', issue: 'Faulty Meter Cluster' },
+            { id: 4, location: 'Berea CBD', issue: 'Cable Theft Repair' }
+        ];
+
+        function showAssignmentModal(techId) {
+            activeTechId = techId;
+            document.getElementById('assignmentModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('assignmentModal').style.display = 'none';
+        }
+
+        function assignTechnician() {
+            const assignmentId = parseInt(document.getElementById('assignmentSelect').value);
+            const assignment = demoAssignments.find(a => a.id === assignmentId);
+            const techRow = document.querySelector(`tr[data-tech-id="${activeTechId}"]`);
+            
+            if (techRow) {
+                techRow.querySelector('.status-badge').className = 'status-badge status-assigned';
+                techRow.querySelector('td:nth-child(3)').textContent = 
+                    `${assignment.location} (${assignment.issue})`;
+                closeModal();
+            }
+        }
+
+        function updateStatus(techId, status) {
+            const techRow = document.querySelector(`tr[data-tech-id="${techId}"]`);
+            if (techRow) {
+                const statusBadge = techRow.querySelector('.status-badge');
+                statusBadge.className = `status-badge status-${status.toLowerCase()}`;
+                statusBadge.textContent = status;
+                
+                if (status === 'Completed') {
+                    techRow.querySelector('td:nth-child(3)').textContent = 'Available for assignment';
+                }
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

@@ -8,20 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary: #4361ee;
-            --secondary: #3f37c9;
-            --accent: #4895ef;
-            --light: #f8f9ff;
-            --dark: #1a1a2e;
-            --success: #4cc9f0;
-            --warning: #f72585;
-            --danger: #f72585;
-            --info: #4895ef;
-            --text: #2b2d42;
-            --text-light: #8d99ae;
-            --card-bg: #ffffff;
-            --sidebar-bg: #1a1a2e;
-            --sidebar-text: #e2e2e2;
+            --primary: #4F46E5;    /* Indigo */
+            --secondary: #6366F1;  /* Light Indigo */
+            --accent: #818CF8;     /* Lighter Indigo */
+            --light: #F8FAFC;      /* Lightest Gray */
+            --dark: #1E293B;       /* Dark Blue Gray */
+            --success: #34D399;    /* Emerald */
+            --warning: #F59E0B;    /* Amber */
+            --danger: #EF4444;     /* Red */
+            --sidebar-bg: #E0E7FF; /* Light Indigo */
+            --card-bg: rgb(255, 255, 255);    /* White */
+            --text: #1E293B;
+            --text-light: rgb(132, 148, 170);
         }
         
         * {
@@ -40,17 +38,17 @@
         
         .sidebar {
             width: 250px;
-            background-color: var(--sidebar-bg);
-            color: var(--sidebar-text);
+            background-color: var(--sidebar-bg) !important;
+            color: var(--dark) !important;
             padding: 20px 0;
             height: 100vh;
             position: fixed;
-            box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
         }
         
         .logo-container {
             padding: 0 20px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
             margin-bottom: 20px;
         }
         
@@ -72,6 +70,7 @@
             vertical-align: middle;
             font-size: 1.1rem;
             font-weight: 600;
+            color: var(--dark);
         }
         
         .nav-menu {
@@ -81,18 +80,20 @@
         .nav-item {
             padding: 12px 20px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin: 5px 10px;
             border-radius: 6px;
         }
         
         .nav-item:hover {
-            background-color: rgba(255,255,255,0.1);
+            background-color: rgba(79, 70, 229, 0.1) !important;
+            transform: translateX(5px);
         }
         
-        .nav-item.active {
-            background-color: var(--primary);
-            color: white;
+        .nav-link {
+            text-decoration: none !important;
+            color: var(--dark) !important;
+            display: block;
         }
         
         .main-content {
@@ -111,7 +112,6 @@
         
         .dashboard-title {
             font-size: 1.8rem;
-            color: var(--dark);
             font-weight: 600;
             background: linear-gradient(to right, var(--primary), var(--accent));
             -webkit-background-clip: text;
@@ -128,10 +128,11 @@
             margin-bottom: 20px;
             display: flex;
             align-items: center;
-            background-color: var(--card-bg);
+            background-color: rgb(215, 240, 241);
             padding: 10px 15px;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
         
         .filter-label {
@@ -143,7 +144,7 @@
         .filter-select {
             padding: 8px 12px;
             border-radius: 6px;
-            border: 1px solid #e0e0e0;
+            border: 1px solid rgba(99, 102, 241, 0.2);
             background-color: var(--card-bg);
             color: var(--text);
             font-weight: 500;
@@ -153,7 +154,7 @@
         
         .filter-select:focus {
             border-color: var(--accent);
-            box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
         
         .last-updated {
@@ -169,17 +170,17 @@
         }
         
         .card {
-            background: var(--card-bg);
+            background: rgb(215, 240, 241);
             border-radius: 12px;
             padding: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
         }
         
         .card-header {
@@ -188,7 +189,7 @@
             align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
         }
         
         .card-title {
@@ -212,11 +213,13 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
         
         .stat-card:hover {
             transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
         }
         
         .stat-icon {
@@ -230,7 +233,7 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--primary), var(--accent));
-            box-shadow: 0 4px 10px rgba(67, 97, 238, 0.3);
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
         }
         
         .stat-value {
@@ -285,7 +288,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 5px rgba(0,0,0,0.03);
             border-left: 4px solid transparent;
         }
@@ -353,6 +356,25 @@
             opacity: 0.7;
         }
         
+        .logout-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+        
         @media (max-width: 1200px) {
             .dashboard-grid {
                 grid-template-columns: repeat(1, 1fr);
@@ -368,7 +390,7 @@
             background-color: rgba(113, 128, 250, 0.6);
         }
         .marker-cluster-small div {
-            background-color: rgba(67, 97, 238, 0.8);
+            background-color: rgba(79, 70, 229, 0.8);
             color: white;
         }
         
@@ -376,7 +398,7 @@
             background-color: rgba(253, 156, 66, 0.6);
         }
         .marker-cluster-medium div {
-            background-color: rgba(247, 37, 133, 0.8);
+            background-color: rgba(239, 68, 68, 0.8);
             color: white;
         }
     </style>
@@ -387,13 +409,13 @@
     <div class="sidebar">
         <div class="logo-container">
             <div class="logo">EM</div>
-            <span class="admin-title">Eskom Monitor</span>
+            <span class="admin-title">Monitor</span>
         </div>
         <ul class="nav-menu">
-            <li class="nav-item active"><i class="fas fa-tachometer-alt" style="margin-right: 10px;"></i> Dashboard</li>
-            <li class="nav-item"><i class="fas fa-bell" style="margin-right: 10px;"></i> Alerts</li>
-            <li class="nav-item"><i class="fas fa-users" style="margin-right: 10px;"></i> Technician Dispatch</li>
-            <li class="nav-item"><i class="fas fa-chart-bar" style="margin-right: 10px;"></i> Reports</li>
+            <li class="nav-item {% if active_page == 'dashboard' %}active{% endif %}"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+            <li class="nav-item"><a href="/alerts" class="nav-link">Alerts</a></li>
+            <li class="nav-item"><a href="/technicians" class="nav-link">Technician Dispatch</a></li>
+            <li class="nav-item"><a href="/reports" class="nav-link">Reports</a></li>
         </ul>
     </div>
 
@@ -401,10 +423,13 @@
     <div class="main-content">
         <div class="dashboard-header">
             <div>
-                <h1 class="dashboard-title">Electricity Monitoring Dashboard</h1>
+                <h1 class="dashboard-title">Smart Electricity Monitoring Dashboard</h1>
                 <p class="dashboard-subtitle">Real-time monitoring of electricity usage and faults</p>
             </div>
-            <div class="last-updated">Last updated: {{ last_updated }}</div>
+            <div style="display: flex; align-items: center;">
+                <div class="last-updated" style="margin-right: 20px;">Last updated: {{ last_updated }}</div>
+                <a href="/" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
         </div>
         
         <!-- Filter -->
@@ -434,14 +459,14 @@
                         <div class="stat-label">Total Meters</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #4cc9f0, #4895ef);">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, var(--success), var(--primary));">
                             <i class="fas fa-check-circle"></i>
                         </div>
                         <div class="stat-value" id="activeMeters">{{ active_meters }}</div>
                         <div class="stat-label">Active Meters</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-icon" style="background: linear-gradient(135deg, #7209b7, #560bad);">
+                        <div class="stat-icon" style="background: linear-gradient(135deg, var(--primary), var(--secondary));">
                             <i class="fas fa-money-bill-wave"></i>
                         </div>
                         <div class="stat-value" id="totalRevenue">R{{ "%.2f"|format(total_revenue) }}</div>
@@ -522,14 +547,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Color palette
             const colors = {
-                residential: '#4361ee',
-                business: '#4cc9f0',
-                industrial: '#f72585',
-                westville: '#7209b7',
-                morningside: '#3a0ca3',
-                durbanNorth: '#4895ef',
-                newlands: '#560bad',
-                default: '#1a1a2e'
+                residential: '#4F46E5',
+                business: '#34D399',
+                industrial: '#EF4444',
+                westville: '#6366F1',
+                morningside: '#818CF8',
+                durbanNorth: '#F59E0B',
+                newlands: '#4F46E5',
+                default: '#1E293B'
             };
 
             // Fault Trend Chart with percentages
@@ -553,7 +578,7 @@
                         label: 'Fault Occurrences',
                         data: monthlyData.map(item => item.count),
                         borderColor: colors.industrial,
-                        backgroundColor: 'rgba(247, 37, 133, 0.1)',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
                         borderWidth: 2,
                         fill: true,
                         tension: 0.4,
@@ -576,7 +601,7 @@
                                     return '';
                                 }
                             },
-                            backgroundColor: 'rgba(26, 26, 46, 0.9)',
+                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
                             titleFont: { size: 14, weight: 'bold' },
                             bodyFont: { size: 12 },
                             padding: 12,
@@ -663,7 +688,7 @@
                                     return `${label}: ${value} (${percentage}%)`;
                                 }
                             },
-                            backgroundColor: 'rgba(26, 26, 46, 0.9)',
+                            backgroundColor: 'rgba(30, 41, 59, 0.9)',
                             bodyFont: { size: 12 },
                             padding: 12,
                             cornerRadius: 8
@@ -697,27 +722,27 @@
             const placeIcons = {
                 'Chatsworth': L.divIcon({
                     className: 'custom-icon',
-                    html: '<div style="background-color:#f72585; width:22px; height:22px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    html: '<div style="background-color:#EF4444; width:22px; height:22px; border-radius:50%; border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
                     iconSize: [22, 22]
                 }),
                 'Kwamashu': L.divIcon({
                     className: 'custom-icon',
-                    html: '<div style="background-color:#4361ee; width:22px; height:22px; transform:rotate(45deg); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    html: '<div style="background-color:#4F46E5; width:22px; height:22px; transform:rotate(45deg); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
                     iconSize: [22, 22]
                 }),
                 'Berea': L.divIcon({
                     className: 'custom-icon',
-                    html: '<div style="background-color:#4cc9f0; width:22px; height:22px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    html: '<div style="background-color:#34D399; width:22px; height:22px; clip-path: polygon(50% 0%, 0% 100%, 100% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
                     iconSize: [22, 22]
                 }),
                 'Newlands': L.divIcon({
                     className: 'custom-icon',
-                    html: '<div style="background-color:#560bad; width:22px; height:22px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    html: '<div style="background-color:#6366F1; width:22px; height:22px; clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
                     iconSize: [22, 22]
                 }),
                 'Westville': L.divIcon({
                     className: 'custom-icon',
-                    html: '<div style="background-color:#7209b7; width:22px; height:22px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
+                    html: '<div style="background-color:#818CF8; width:22px; height:22px; clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%); border: 2px solid white; box-shadow: 0 2px 5px rgba(0,0,0,0.2);"></div>',
                     iconSize: [22, 22]
                 }),
                 'Morningside': L.divIcon({

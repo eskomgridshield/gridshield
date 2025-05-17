@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4F46E5;    /* Indigo */
+            --secondary: #6366F1;  /* Light Indigo */
+            --accent: #818CF8;     /* Lighter Indigo */
+            --light: #F8FAFC;      /* Lightest Gray */
+            --dark: #1E293B;       /* Dark Blue Gray */
+            --success: #34D399;    /* Emerald */
+            --warning: #F59E0B;    /* Amber */
+            --danger: #EF4444;     /* Red */
+            --sidebar-bg: #E0E7FF; /* Light Indigo */
+            --card-bg: #FFFFFF;    /* White */
+            --text: #1E293B;
+            --text-light: #64748B;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            min-height: 100vh;
+            background-color: var(--light);
+            color: var(--text);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background-color: var(--sidebar-bg) !important;
+            color: var(--dark) !important;
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            box-shadow: 2px 0 15px rgba(0,0,0,0.05);
+        }
+        
+        .logo-container {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            margin-bottom: 20px;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .admin-title {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .nav-menu {
+            list-style: none;
+        }
+        
+        .nav-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            margin: 5px 10px;
+            border-radius: 6px;
+        }
+        
+        .nav-item:hover {
+            background-color: rgba(79, 70, 229, 0.1) !important;
+            transform: translateX(5px);
+        }
+        
+        .nav-link {
+            text-decoration: none !important;
+            color: var(--dark) !important;
+            display: block;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 30px;
+            background-color: var(--light);
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .dashboard-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+        
+        .filter-container {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            background-color:rgb(205, 226, 248);
+            padding: 10px 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .filter-label {
+            margin-right: 10px;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .filter-select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .filter-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+        }
+        
+        .last-updated {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            text-align: right;
+        }
+        
+        .card {
+            background: rgb(205, 226, 248);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            border: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+        
+        .alert-table {
+            width: 100%;
+            border-collapse: collapse;
+            background:rgb(252, 213, 240);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        
+        .alert-table th {
+            text-align: left;
+            padding: 12px 15px;
+            background-color:rgb(152, 70, 229);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .alert-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+            vertical-align: middle;
+            background: var(--card-bg);
+        }
+        
+        .alert-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .alert-table tr {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .alert-table tr:hover {
+            transform: scale(1.02);
+            z-index: 2;
+            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+        }
+
+        .alert-table tr:hover td {
+            background-color: rgba(99, 102, 241, 0.03);
+        }
+
+        .alert-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .badge-critical {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+        }
+        
+        .badge-high {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+        }
+        
+        .badge-medium {
+            background: linear-gradient(135deg, #FCD34D, #F59E0B);
+            color: white;
+        }
+        
+        .badge-low {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            color: white;
+        }
+        
+        .badge-resolved {
+            background: linear-gradient(135deg, #34D399, #10B981);
+            color: white;
+        }
+        
+        .badge-unresolved {
+            background: linear-gradient(135deg, #EF4444, #DC2626);
+            color: white;
+        }
+        
+        .action-btn {
+            padding: 8px 16px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(99, 102, 241, 0.2);
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
+        }
+        
+        .action-btn.resolve {
+            background: linear-gradient(135deg, #34D399, #10B981);
+        }
+        
+        .action-btn.resolve:hover {
+            background: linear-gradient(135deg, #10B981, #059669);
+        }
+        
+        .no-alerts {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+        
+        .no-alerts i {
+            font-size: 2rem;
+            color: var(--success);
+            margin-bottom: 10px;
+            opacity: 0.7;
+        }
+        
+        .filters-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="logo-container">
+            <div class="logo">EM</div>
+            <span class="admin-title">Monitor</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="/dashboard" class="nav-link">Dashboard</a></li>
+            <li class="nav-item"><a href="/alerts" class="nav-link">Alerts</a></li>
+            <li class="nav-item"><a href="/technicians" class="nav-link">Technician Dispatch</a></li>
+            <li class="nav-item"><a href="/reports" class="nav-link">Reports</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard-header">
+            <div>
+                <h1 class="dashboard-title">System Alerts</h1>
+                <p class="dashboard-subtitle">Monitor and manage system-generated alerts</p>
+            </div>
+            <div class="last-updated">Last updated: {{ last_updated }}</div>
+        </div>
+        
+        <!-- Filters -->
+        <div class="filters-row">
+            <div class="filter-container">
+                <span class="filter-label"><i class="fas fa-filter" style="margin-right: 8px;"></i> Filter by Area:</span>
+                <select id="placeFilter" class="filter-select">
+                    <option value="all">All Areas</option>
+                    {% for place in places %}
+                    <option value="{{ place }}">{{ place }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            
+            <div class="filter-container">
+                <span class="filter-label"><i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i> Filter by Issue:</span>
+                <select id="issueFilter" class="filter-select">
+                    <option value="all">All Issues</option>
+                    <option value="Sudden drop in usage">Sudden drop in usage</option>
+                    <option value="Meter inactive">Meter inactive</option>
+                    <option value="Unusual power usage">Unusual power usage</option>
+                </select>
+            </div>
+            
+            <div class="filter-container">
+                <span class="filter-label"><i class="fas fa-flag" style="margin-right: 8px;"></i> Filter by Status:</span>
+                <select id="statusFilter" class="filter-select">
+                    <option value="all">All Statuses</option>
+                    <option value="No">Unresolved</option>
+                    <option value="Yes">Resolved</option>
+                </select>
+            </div>
+        </div>
+        
+        <!-- Alerts Table -->
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-bell" style="margin-right: 10px; color: var(--accent);"></i> Active Alerts</h2>
+                <div class="stat-value" id="alertCount">{{ alerts|length }}</div>
+            </div>
+            
+            <div class="table-container">
+                {% if alerts %}
+                <table class="alert-table">
+                    <thead>
+                        <tr>
+                            <th>Device ID</th>
+                            <th>User Name</th>
+                            <th>Place</th>
+                            <th>Issue Type</th>
+                            <th>Severity</th>
+                            <th>Timestamp</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alertsTableBody">
+                        {% for alert in alerts %}
+                        <tr>
+                            <td>{{ alert.device_id }}</td>
+                            <td>{{ alert.user_name }}</td>
+                            <td>{{ alert.place }}</td>
+                            <td>{{ alert.issue_type }}</td>
+                            <td>
+                                <span class="alert-badge badge-{{ alert.severity|lower }}">
+                                    {{ alert.severity }}
+                                </span>
+                            </td>
+                            <td>{{ alert.timestamp }}</td>
+                            <td>
+                                <span class="alert-badge {% if alert.resolved == 'Yes' %}badge-resolved{% else %}badge-unresolved{% endif %}">
+                                    {{ alert.resolved }}
+                                </span>
+                            </td>
+                            <td>
+                                {% if alert.resolved == 'No' %}
+                                <button class="action-btn resolve" onclick="resolveAlert('{{ alert.device_id }}', '{{ alert.issue_type }}')">
+                                    <i class="fas fa-check"></i> Resolve
+                                </button>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                <div class="no-alerts">
+                    <i class="fas fa-check-circle"></i>
+                    <div>No active alerts found</div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const placeFilter = document.getElementById('placeFilter');
+            const issueFilter = document.getElementById('issueFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            
+            function applyFilters() {
+                const place = placeFilter.value.toLowerCase();
+                const issue = issueFilter.value;
+                const status = statusFilter.value;
+                
+                const rows = document.querySelectorAll('#alertsTableBody tr');
+                let visibleCount = 0;
+                
+                rows.forEach(row => {
+                    const rowPlace = row.cells[2].textContent.toLowerCase();
+                    const rowIssue = row.cells[3].textContent;
+                    const rowStatus = row.cells[6].textContent.trim();
+                    
+                    const placeMatch = place === 'all' || rowPlace === place;
+                    const issueMatch = issue === 'all' || rowIssue === issue;
+                    const statusMatch = status === 'all' || rowStatus === status;
+                    
+                    row.style.display = (placeMatch && issueMatch && statusMatch) ? '' : 'none';
+                    if (placeMatch && issueMatch && statusMatch) visibleCount++;
+                });
+                
+                document.getElementById('alertCount').textContent = visibleCount;
+            }
+            
+            placeFilter.addEventListener('change', applyFilters);
+            issueFilter.addEventListener('change', applyFilters);
+            statusFilter.addEventListener('change', applyFilters);
+        });
+        
+        function resolveAlert(deviceId, issueType) {
+            if (confirm(`Mark this ${issueType} alert for device ${deviceId} as resolved?`)) {
+                alert('Alert marked as resolved (demo only)');
+                // Remove the resolved alert from the UI
+                document.querySelectorAll('#alertsTableBody tr').forEach(row => {
+                    if (row.cells[0].textContent === deviceId && row.cells[3].textContent === issueType) {
+                        row.remove();
+                    }
+                });
+                // Update alert count
+                const currentCount = parseInt(document.getElementById('alertCount').textContent);
+                document.getElementById('alertCount').textContent = currentCount - 1;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,29 +1,44 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eskom Smart System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset and Base Styles */
+        :root {
+            --primary: #4F46E5;    /* Indigo */
+            --secondary: #6366F1;  /* Light Indigo */
+            --accent: #818CF8;     /* Lighter Indigo */
+            --light: #F8FAFC;      /* Lightest Gray */
+            --dark: #1E293B;       /* Dark Blue Gray */
+            --success: #34D399;    /* Emerald */
+            --warning: #F59E0B;    /* Amber */
+            --danger: #EF4444;     /* Red */
+            --sidebar-bg: #E0E7FF; /* Light Indigo */
+            --card-bg: rgb(255, 255, 255);    /* White */
+            --text: #1E293B;
+            --text-light: rgb(132, 148, 170);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #f5f5f5;
-            color: #333;
-            line-height: 1.6;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
+            background-color: var(--light);
+            color: var(--text);
+            background: linear-gradient(135deg, #F8FAFC 0%, #E0E7FF 100%);
             padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8eb 100%);
         }
         
         /* Header Styles */
@@ -33,48 +48,65 @@
         }
         
         .logo {
-            width: 120px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 10px;
             margin-bottom: 15px;
         }
         
         h1 {
-            color: #e03c31;
-            font-size: 2.2rem;
+            font-size: 1.8rem;
+            font-weight: 600;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 10px;
         }
         
         .subtitle {
-            color: #666;
-            font-size: 1.1rem;
-            font-weight: 400;
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-top: 5px;
         }
         
         /* Card Styles */
         .card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            border-radius: 12px;
             overflow: hidden;
             width: 100%;
             max-width: 400px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
         
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.1);
         }
         
         .card-header {
-            background: #e03c31;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 20px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         
         .card-header h2 {
             font-size: 1.5rem;
             margin: 0;
+            font-weight: 600;
         }
         
         .card-body {
@@ -89,41 +121,47 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #555;
+            color: var(--text);
         }
         
         .form-group input,
         .form-group select {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border-radius: 6px;
+            border: 1px solid rgba(99, 102, 241, 0.2);
+            background-color: var(--card-bg);
+            color: var(--text);
+            font-weight: 500;
+            outline: none;
+            transition: all 0.3s;
             font-size: 1rem;
-            transition: border-color 0.3s;
         }
         
         .form-group input:focus,
         .form-group select:focus {
-            border-color: #e03c31;
-            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
         }
         
         .btn {
             display: inline-block;
-            background: #e03c31;
-            color: white;
-            border: none;
+            width: 100%;
             padding: 12px 25px;
-            border-radius: 5px;
+            border-radius: 8px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            width: 100%;
-            transition: background 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(128, 130, 216, 0.2);
         }
         
         .btn:hover {
-            background: #c0342a;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(99, 102, 241, 0.3);
         }
         
         .role-indicator {
@@ -136,13 +174,13 @@
         }
         
         .admin-indicator {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: var(--success);
+            color: white;
         }
         
         .tech-indicator {
-            background-color: #fff3cd;
-            color: #856404;
+            background-color: var(--warning);
+            color: white;
         }
         
         /* Footer */
@@ -150,15 +188,15 @@
             text-align: center;
             margin-top: 40px;
             padding: 20px;
-            color: #666;
+            color: var(--text-light);
             font-size: 0.9rem;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="header">
-        <!-- Replace with actual Eskom logo -->
-        <img src="{{ url_for('static', filename='images/eskom_logo2.jpg') }}" alt="Eskom Logo" class="logo">
+        <div class="logo">EM</div>
         <h1>Smart System Portal</h1>
         <p class="subtitle">Single login for all system roles</p>
     </div>
@@ -170,30 +208,30 @@
         <div class="card-body">
             <form action="/login" method="POST">
                 <div class="form-group">
-                    <label for="username">Username/ID</label>
+                    <label for="username"><i class="fas fa-user" style="margin-right: 8px;"></i>Username/ID</label>
                     <input type="text" id="username" name="username" placeholder="Enter your username or ID" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><i class="fas fa-lock" style="margin-right: 8px;"></i>Password</label>
                     <input type="password" id="password" name="password" placeholder="Enter your password" required>
                 </div>
                 
                 <div class="form-group">
-                    <label for="role">Login As</label>
+                    <label for="role"><i class="fas fa-user-shield" style="margin-right: 8px;"></i>Login As</label>
                     <select id="role" name="role" required onchange="updateRoleIndicator()">
                         <option value="admin">Administrator</option>
                         <option value="technician">Technician</option>
                     </select>
                 </div>
                 
-                <button type="submit" class="btn">Login to System</button>
+                <button type="submit" class="btn"><i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>Login to System</button>
             </form>
         </div>
     </div>
     
     <div class="footer">
-        <p>&copy; 2025 Eskom Smart System. All rights reserved.</p>
+        <p>&copy; 2025 Aristotech Smart System. All rights reserved.</p>
         <p>For assistance, please contact IT support.</p>
     </div>
 

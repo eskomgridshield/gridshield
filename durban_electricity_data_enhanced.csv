@@ -1,0 +1,151 @@
+Name,Surname,Address,Place,Last Purchase Date,Electricity Bought (R),Watts Used,Watts Allocated,Meter Type,Meter Status,Power Outage,User Type,Meter ID,Average Monthly Usage (kWh),Meter Installation Date,Last Maintenance Date
+Danielle,Johnson,"3321 Brittany Bypass, Chatsworth, Durban",Chatsworth,2023-06-11,754.47,4696.17,7544.7,Prepaid,Active,Yes,Residential,DBN-001,0.47,2021-10-12,2024-09-05
+Clayton,Hall,"083 Robinson Radial, Kwamashu, Durban",Kwamashu,2023-12-21,80.19,438.52,801.9,Prepaid,Active,Yes,Business,DBN-002,0.03,2020-06-04,2024-12-24
+Lisa,Smith,"65423 Garcia Light, Newlands, Durban",Newlands,2023-08-02,259.42,2061.44,2594.2,Prepaid,Active,No,Business,DBN-003,0.52,2021-10-26,2023-11-17
+Michael,Cooper,"0781 Miller Hill, Isipingo, Durban",Isipingo,2025-02-21,197.71,1934.8,1977.1,Smart meter,Active,Yes,Business,DBN-004,0.48,2022-07-18,2023-11-21
+Courtney,Mcclure,"9310 Kendra Common, Berea, Durban",Berea,2025-03-13,391.03,2627.64,3910.3,Smart meter,Active,No,Residential,DBN-005,0.33,2020-08-19,2025-02-06
+Jesse,Garcia,"7525 Clark Grove, Newlands, Durban",Newlands,2024-11-14,974.46,6716.63,9744.6,Smart meter,Not Active,Yes,Residential,DBN-006,0.37,2021-12-28,2025-02-26
+Sharon,Wong,"283 Steven Groves, Chatsworth, Durban",Chatsworth,2025-05-06,678.2,6012.47,6782.0,Prepaid,Active,Yes,Residential,DBN-007,1.2,2019-08-26,2024-02-29
+Danielle,Hawkins,"503 Linda Locks, Berea, Durban",Berea,2023-12-12,480.74,4408.65,4807.4,Prepaid,Not Active,No,Business,DBN-008,0.34,2023-10-09,2024-08-05
+Carl,Gentry,"537 Wilkerson Row, Durban North, Durban",Durban North,2024-05-09,303.63,2940.13,3036.3,Prepaid,Active,Yes,Industrial,DBN-009,0.2,2021-09-30,2024-05-12
+Douglas,Taylor,"884 Hurst Locks, Phoenix, Durban",Phoenix,2024-02-24,410.48,4083.3,4104.8,Prepaid,Not Active,Yes,Business,DBN-010,0.34,2020-05-25,2025-01-13
+Jeffrey,Bright,"710 Eric Estate, Durban North, Durban",Durban North,2025-01-23,814.79,5708.28,8147.9,Prepaid,Active,No,Residential,DBN-011,0.26,2021-04-01,2024-06-13
+Erin,Carlson,"6978 Maddox Wall, Durban North, Durban",Durban North,2023-05-27,524.27,4940.41,5242.7,Smart meter,Active,No,Industrial,DBN-012,0.21,2022-06-27,2024-04-09
+Erin,Wilson,"451 Graham Motorway, Phoenix, Durban",Phoenix,2023-05-21,757.74,5830.72,7577.4,Smart meter,Not Active,No,Residential,DBN-013,0.25,2019-05-19,2025-02-12
+Stephanie,Liu,"8281 Skinner Parkways, Durban North, Durban",Durban North,2024-09-03,534.05,2913.0,5340.5,Prepaid,Active,Yes,Residential,DBN-014,0.16,2019-09-13,2025-01-31
+James,Brooks,"88095 Smith Lake, Phoenix, Durban",Phoenix,2025-03-31,451.05,2398.52,4510.5,Smart meter,Not Active,No,Industrial,DBN-015,0.17,2023-02-22,2023-09-04
+Tricia,Roman,"03911 Cabrera Trace, Newlands, Durban",Newlands,2024-07-05,696.27,3880.14,6962.7,Smart meter,Not Active,Yes,Residential,DBN-016,0.2,2020-02-16,2023-06-29
+Katie,Anderson,"8248 Brandt Plains, Westville, Durban",Westville,2024-12-25,200.25,1004.5,2002.5,Smart meter,Active,Yes,Business,DBN-017,0.04,2023-06-16,2024-05-27
+Jessica,Harris,"6578 Martinez Fork, Westville, Durban",Westville,2023-07-07,532.28,3190.78,5322.8,Smart meter,Active,Yes,Industrial,DBN-018,0.13,2021-02-27,2024-07-23
+Matthew,Chapman,"93010 Carlos Bypass, Kwamashu, Durban",Kwamashu,2025-03-16,514.18,2858.5,5141.8,Smart meter,Not Active,Yes,Business,DBN-019,0.57,2018-11-15,2024-11-22
+Mark,Palmer,"7382 Sanchez Mountains, Umlazi, Durban",Umlazi,2025-02-04,884.11,8606.59,8841.1,Prepaid,Not Active,Yes,Residential,DBN-020,0.61,2022-05-22,2025-03-11
+Richard,Davis,"656 Owens Stream, Newlands, Durban",Newlands,2023-06-30,171.97,1268.52,1719.7,Prepaid,Not Active,No,Residential,DBN-021,0.06,2019-01-23,2023-12-27
+Emily,Joyce,"06513 James Mission, Durban North, Durban",Durban North,2023-09-04,767.5,6484.87,7675.0,Smart meter,Not Active,No,Industrial,DBN-022,1.62,2018-09-18,2025-01-01
+Robert,Ramirez,"17810 Tanya Terrace, Morningside, Durban",Morningside,2025-03-08,478.91,2988.17,4789.1,Prepaid,Not Active,Yes,Industrial,DBN-023,0.19,2019-05-14,2023-12-17
+Joel,Russell,"3602 Smith Loaf, Kwamashu, Durban",Kwamashu,2023-12-10,268.61,1638.81,2686.1,Prepaid,Active,Yes,Industrial,DBN-024,0.08,2021-10-27,2024-06-21
+Sara,Glover,"6872 Kenneth Centers, Chatsworth, Durban",Chatsworth,2024-08-10,866.65,4640.29,8666.5,Prepaid,Not Active,No,Residential,DBN-025,0.33,2019-04-03,2025-02-23
+Jill,Brown,"0097 Brian Pass, Durban North, Durban",Durban North,2023-07-20,175.7,1700.35,1757.0,Smart meter,Active,No,Industrial,DBN-026,0.19,2021-09-21,2023-07-30
+Melissa,Jones,"36193 Christine Manor, Berea, Durban",Berea,2024-10-10,139.61,1158.05,1396.1,Smart meter,Not Active,No,Residential,DBN-027,0.58,2019-11-21,2025-02-12
+Brandy,Mills,"3534 Anderson Rue, Morningside, Durban",Morningside,2024-01-07,101.46,838.8,1014.6,Prepaid,Active,No,Industrial,DBN-028,0.04,2021-11-02,2025-04-06
+Stephen,Hickman,"07991 Amanda Parkways, Isipingo, Durban",Isipingo,2023-12-10,286.22,1703.31,2862.2,Smart meter,Active,No,Residential,DBN-029,0.14,2020-12-22,2023-06-09
+David,Bailey,"35427 Carr Valley, Phoenix, Durban",Phoenix,2024-10-07,489.5,4587.8,4895.0,Prepaid,Not Active,Yes,Business,DBN-030,0.66,2021-07-13,2023-06-30
+Allison,Contreras,"412 Wilson Coves, Umlazi, Durban",Umlazi,2024-12-15,999.32,9173.9,9993.2,Prepaid,Active,Yes,Industrial,DBN-031,0.61,2021-05-16,2024-06-12
+Angela,Nelson,"353 Wagner Glen, Berea, Durban",Berea,2025-04-21,507.29,4729.59,5072.9,Prepaid,Active,No,Business,DBN-032,0.32,2021-03-07,2023-11-19
+Rebekah,Williams,"640 Matthew Curve, Umlazi, Durban",Umlazi,2024-09-24,301.94,2693.41,3019.4,Smart meter,Not Active,No,Business,DBN-033,0.34,2021-04-14,2023-07-22
+Tina,Martin,"8680 Charles Spurs, Newlands, Durban",Newlands,2025-04-20,732.49,4229.39,7324.9,Smart meter,Active,Yes,Industrial,DBN-034,0.35,2021-03-10,2023-11-10
+Edward,Johnson,"9826 Bobby Lakes, Kwamashu, Durban",Kwamashu,2025-04-16,565.09,4938.82,5650.9,Prepaid,Active,No,Industrial,DBN-035,1.23,2018-03-29,2024-01-22
+Sarah,Stanton,"53315 Dickson Summit, Newlands, Durban",Newlands,2023-09-16,199.56,1956.47,1995.6,Prepaid,Active,Yes,Industrial,DBN-036,0.09,2018-11-04,2025-03-01
+Sara,Young,"26025 Pham Way, Kwamashu, Durban",Kwamashu,2024-12-09,691.45,4270.41,6914.5,Prepaid,Active,Yes,Residential,DBN-037,0.36,2023-07-13,2024-02-04
+Lisa,Adams,"160 Walker Viaduct, Kwamashu, Durban",Kwamashu,2025-05-01,448.26,3549.48,4482.6,Smart meter,Not Active,Yes,Residential,DBN-038,0.2,2019-03-30,2023-09-03
+Steven,Torres,"30365 Lin Trail, Isipingo, Durban",Isipingo,2023-12-21,302.33,1709.49,3023.3,Smart meter,Not Active,No,Residential,DBN-039,0.08,2018-04-30,2023-12-28
+Michael,Hicks,"850 Natalie Green, Chatsworth, Durban",Chatsworth,2023-10-04,485.37,4849.95,4853.7,Prepaid,Active,Yes,Residential,DBN-040,0.4,2022-01-07,2024-11-10
+Beverly,Terrell,"19655 Obrien Pass, Newlands, Durban",Newlands,2023-08-16,175.83,1185.98,1758.3,Prepaid,Active,No,Business,DBN-041,0.59,2019-03-08,2024-12-29
+Paul,Ray,"0608 Michael Cliff, Westville, Durban",Westville,2024-10-15,466.28,3597.86,4662.8,Smart meter,Active,No,Residential,DBN-042,0.28,2021-12-28,2024-05-02
+Samantha,Hanson,"148 Estrada Islands, Chatsworth, Durban",Chatsworth,2024-03-26,301.24,2846.29,3012.4,Prepaid,Not Active,No,Residential,DBN-043,0.32,2023-03-27,2023-05-24
+Heidi,Spencer,"66299 Sullivan Village, Kwamashu, Durban",Kwamashu,2023-05-19,731.73,4403.54,7317.3,Smart meter,Not Active,No,Residential,DBN-044,0.63,2018-09-04,2023-06-03
+Kevin,Clark,"957 Ramos Forest, Umlazi, Durban",Umlazi,2024-06-19,652.57,5968.89,6525.7,Prepaid,Active,No,Residential,DBN-045,1.49,2020-03-06,2023-11-03
+Thomas,Santana,"214 Davis Terrace, Phoenix, Durban",Phoenix,2023-11-17,980.81,5696.46,9808.1,Smart meter,Not Active,Yes,Industrial,DBN-046,0.38,2019-04-10,2024-07-19
+Emily,Walker,"20037 Stanley Roads, Chatsworth, Durban",Chatsworth,2024-08-08,947.8,8013.74,9478.0,Prepaid,Active,No,Residential,DBN-047,2.67,2023-03-07,2024-07-02
+James,Horton,"6320 Kimberly Forges, Kwamashu, Durban",Kwamashu,2023-10-02,190.69,1074.96,1906.9,Smart meter,Not Active,Yes,Industrial,DBN-048,0.05,2021-08-08,2023-08-14
+Linda,Dominguez,"0831 Anderson Mountain, Isipingo, Durban",Isipingo,2024-10-18,697.96,5817.26,6979.6,Smart meter,Not Active,Yes,Residential,DBN-049,0.83,2020-06-14,2023-11-20
+Amanda,Hansen,"7986 Merritt Summit, Durban North, Durban",Durban North,2025-03-18,977.4,8849.24,9774.0,Smart meter,Active,Yes,Residential,DBN-050,0.42,2020-07-24,2023-08-22
+Thomas,Green,"48734 Jones Heights, Isipingo, Durban",Isipingo,2023-11-17,812.12,7569.22,8121.2,Prepaid,Not Active,Yes,Business,DBN-051,0.36,2018-05-29,2023-11-21
+Joseph,Flores,"122 Patrick Drives, Chatsworth, Durban",Chatsworth,2024-11-17,878.56,8164.43,8785.6,Prepaid,Active,No,Business,DBN-052,0.41,2021-07-28,2024-09-27
+Jason,Perry,"8760 Marissa Loaf, Isipingo, Durban",Isipingo,2025-04-20,829.51,7761.41,8295.1,Prepaid,Active,Yes,Business,DBN-053,7.76,2023-04-20,2024-05-09
+Kayla,Shah,"96705 Molina Walk, Berea, Durban",Berea,2025-04-10,314.67,1682.57,3146.7,Smart meter,Not Active,No,Business,DBN-054,0.84,2018-07-15,2023-08-14
+Stephanie,Barnes,"893 Robinson Mews, Newlands, Durban",Newlands,2024-05-30,942.28,5254.82,9422.8,Smart meter,Active,No,Business,DBN-055,0.48,2022-04-02,2024-08-25
+Anthony,Rogers,"627 Tina Place, Umlazi, Durban",Umlazi,2023-06-08,616.74,4149.7,6167.4,Smart meter,Not Active,Yes,Residential,DBN-056,0.52,2022-07-24,2023-06-01
+Rebecca,Vargas,"016 Michelle Falls, Berea, Durban",Berea,2023-06-27,230.57,1204.02,2305.7,Smart meter,Active,Yes,Industrial,DBN-057,0.24,2023-05-18,2024-06-23
+Jorge,Murphy,"5564 King Common, Isipingo, Durban",Isipingo,2024-05-18,116.48,969.25,1164.8,Smart meter,Not Active,Yes,Business,DBN-058,0.05,2022-11-22,2023-11-23
+Andrew,Ryan,"3100 James Brooks, Westville, Durban",Westville,2024-09-12,343.82,2421.17,3438.2,Smart meter,Not Active,Yes,Industrial,DBN-059,0.35,2019-03-23,2024-01-01
+Elijah,Martinez,"193 Lyons Trafficway, Durban North, Durban",Durban North,2024-02-29,681.68,4700.68,6816.8,Prepaid,Not Active,No,Business,DBN-060,1.57,2021-08-26,2023-05-21
+Gary,Lawson,"124 Beth Inlet, Newlands, Durban",Newlands,2024-08-08,338.68,2049.32,3386.8,Smart meter,Not Active,No,Residential,DBN-061,0.11,2023-03-26,2024-02-18
+Erica,Rubio,"3193 Heidi Hollow, Morningside, Durban",Morningside,2025-03-09,253.02,1863.73,2530.2,Prepaid,Active,No,Industrial,DBN-062,0.27,2020-01-18,2024-08-05
+Gabrielle,Trujillo,"058 Stanley Cliff, Newlands, Durban",Newlands,2024-06-14,651.29,4347.97,6512.9,Prepaid,Not Active,Yes,Industrial,DBN-063,0.23,2021-07-18,2023-10-12
+Deborah,Smith,"7165 Zimmerman Mews, Durban North, Durban",Durban North,2023-10-02,73.2,455.61,732.0,Smart meter,Active,No,Residential,DBN-064,0.07,2023-08-27,2024-10-20
+Jessica,Sheppard,"9877 Petersen Ramp, Berea, Durban",Berea,2023-12-13,596.89,5128.32,5968.9,Smart meter,Not Active,No,Industrial,DBN-065,0.64,2018-09-23,2024-06-29
+Marcus,Sanchez,"47379 Rogers Park, Durban North, Durban",Durban North,2025-03-09,673.26,3384.97,6732.6,Prepaid,Not Active,Yes,Residential,DBN-066,0.31,2021-01-25,2023-07-11
+Mark,Freeman,"4549 Peters Path, Phoenix, Durban",Phoenix,2023-10-14,542.06,2846.41,5420.6,Prepaid,Active,No,Industrial,DBN-067,0.57,2022-06-23,2024-07-15
+Christopher,Cortez,"8377 Mcguire Course, Phoenix, Durban",Phoenix,2024-01-02,684.2,6800.58,6842.0,Smart meter,Not Active,No,Business,DBN-068,0.34,2022-04-26,2025-01-19
+Jeffrey,Holt,"9578 Coleman Summit, Newlands, Durban",Newlands,2024-07-19,902.35,7866.94,9023.5,Smart meter,Not Active,No,Business,DBN-069,7.87,2022-04-27,2024-07-23
+Mark,Warner,"4431 Leslie Summit, Durban North, Durban",Durban North,2024-07-08,313.45,2786.06,3134.5,Smart meter,Active,No,Industrial,DBN-070,0.31,2018-03-05,2024-03-18
+Stephanie,Vaughn,"37498 Hooper Village, Morningside, Durban",Morningside,2023-10-16,727.87,4492.75,7278.7,Smart meter,Not Active,Yes,Residential,DBN-071,0.9,2021-12-31,2023-06-22
+Kenneth,Ward,"0824 Terri Plaza, Phoenix, Durban",Phoenix,2023-12-31,269.7,2284.29,2697.0,Prepaid,Active,No,Residential,DBN-072,0.46,2023-05-29,2024-03-15
+Heidi,Martinez,"1094 Mendoza Junctions, Berea, Durban",Berea,2023-10-09,565.48,4002.96,5654.8,Prepaid,Not Active,No,Business,DBN-073,0.22,2021-03-05,2023-12-03
+Tammy,King,"1167 Barbara Spur, Kwamashu, Durban",Kwamashu,2023-06-29,68.56,644.69,685.6,Smart meter,Not Active,Yes,Industrial,DBN-074,0.07,2018-02-20,2024-02-21
+Edward,Shepherd,"1318 Obrien Turnpike, Isipingo, Durban",Isipingo,2024-09-10,765.8,7096.85,7658.0,Smart meter,Active,No,Business,DBN-075,1.18,2018-07-29,2024-02-11
+Jeremiah,Mills,"7496 Carroll Circle, Durban North, Durban",Durban North,2024-09-03,464.04,2387.54,4640.4,Smart meter,Not Active,Yes,Business,DBN-076,0.6,2020-01-20,2024-12-09
+Susan,Garcia,"34123 Andrea Estate, Morningside, Durban",Morningside,2023-05-21,981.69,7530.17,9816.9,Smart meter,Active,Yes,Residential,DBN-077,0.34,2023-08-04,2024-09-18
+Ricky,Norris,"4034 Warner Motorway, Berea, Durban",Berea,2023-07-13,873.51,5161.26,8735.1,Smart meter,Not Active,No,Residential,DBN-078,5.16,2018-11-19,2025-01-08
+Grace,Bradshaw,"936 Amy Rue, Durban North, Durban",Durban North,2023-09-11,360.5,3174.62,3605.0,Smart meter,Not Active,No,Business,DBN-079,0.63,2022-12-13,2024-12-11
+Rebekah,Serrano,"02499 Gonzales Mountain, Westville, Durban",Westville,2024-11-03,496.79,4344.49,4967.9,Prepaid,Not Active,Yes,Residential,DBN-080,4.34,2020-10-30,2023-08-31
+Kevin,Powell,"8877 Carly Meadows, Chatsworth, Durban",Chatsworth,2024-12-09,88.25,454.94,882.5,Prepaid,Active,Yes,Industrial,DBN-081,0.04,2018-05-18,2024-02-17
+Marcus,Wright,"39904 Kathryn Extensions, Kwamashu, Durban",Kwamashu,2024-05-18,276.62,2038.08,2766.2,Prepaid,Active,No,Residential,DBN-082,0.25,2022-08-24,2024-02-06
+April,Ramos,"2967 Theodore Lodge, Westville, Durban",Westville,2024-02-01,209.4,1682.79,2094.0,Prepaid,Active,No,Business,DBN-083,0.09,2023-06-21,2023-10-02
+Manuel,Garcia,"56746 Shawn Island, Chatsworth, Durban",Chatsworth,2023-12-01,74.39,487.98,743.9,Smart meter,Not Active,Yes,Industrial,DBN-084,0.04,2023-10-29,2024-05-14
+Marcus,Cordova,"8087 Brown Path, Chatsworth, Durban",Chatsworth,2024-02-24,706.08,5744.82,7060.8,Prepaid,Not Active,Yes,Industrial,DBN-085,5.74,2023-12-01,2024-05-25
+Cindy,Jimenez,"0348 Sara Mill, Kwamashu, Durban",Kwamashu,2025-04-02,379.84,2712.78,3798.4,Smart meter,Active,No,Residential,DBN-086,0.45,2023-05-17,2023-10-08
+Helen,Martinez,"932 Pierce Plaza, Umlazi, Durban",Umlazi,2024-03-30,831.21,4594.67,8312.1,Smart meter,Not Active,Yes,Business,DBN-087,0.51,2019-02-23,2023-07-08
+Christopher,Gay,"71274 Perry Orchard, Berea, Durban",Berea,2024-05-19,747.11,7342.13,7471.1,Smart meter,Not Active,No,Residential,DBN-088,3.67,2021-11-22,2023-06-17
+John,Arnold,"3982 Joshua Turnpike, Berea, Durban",Berea,2025-03-12,612.85,4051.87,6128.5,Prepaid,Active,No,Industrial,DBN-089,0.81,2020-06-30,2023-10-23
+Robert,Villa,"404 Monroe Prairie, Morningside, Durban",Morningside,2024-10-12,762.95,5988.58,7629.5,Smart meter,Not Active,Yes,Residential,DBN-090,0.25,2018-05-17,2025-01-23
+Tracy,Hernandez,"755 Gibson Islands, Morningside, Durban",Morningside,2025-03-24,222.75,1350.0,2227.5,Smart meter,Not Active,No,Business,DBN-091,0.1,2019-09-12,2025-04-07
+Jacob,Terry,"636 Louis Mountains, Kwamashu, Durban",Kwamashu,2024-11-16,886.1,6892.93,8861.0,Prepaid,Active,Yes,Industrial,DBN-092,0.41,2018-05-11,2024-01-20
+Robin,James,"270 Wayne Ramp, Berea, Durban",Berea,2024-01-31,577.42,3580.94,5774.2,Smart meter,Not Active,No,Business,DBN-093,0.9,2020-08-21,2024-06-23
+Molly,Sawyer,"1870 Robert Shoal, Umlazi, Durban",Umlazi,2023-09-15,329.52,2313.89,3295.2,Prepaid,Not Active,No,Residential,DBN-094,0.1,2021-05-22,2025-02-11
+Charles,Harrington,"5961 Phelps Walks, Morningside, Durban",Morningside,2024-07-06,554.38,3951.35,5543.8,Smart meter,Not Active,No,Industrial,DBN-095,1.32,2022-08-15,2024-05-21
+Norman,Stewart,"780 Jimmy Spur, Westville, Durban",Westville,2025-05-03,288.83,1618.4,2888.3,Prepaid,Not Active,Yes,Business,DBN-096,0.1,2020-02-27,2023-06-17
+Karl,Perez,"61172 Berger Cape, Newlands, Durban",Newlands,2024-01-25,225.89,1373.85,2258.9,Smart meter,Not Active,No,Industrial,DBN-097,0.09,2023-07-03,2023-10-15
+Laura,Carter,"6238 Knight Turnpike, Chatsworth, Durban",Chatsworth,2023-10-05,331.43,2255.18,3314.3,Smart meter,Active,Yes,Residential,DBN-098,0.19,2020-06-07,2024-02-21
+George,Miller,"9379 Jesse Route, Westville, Durban",Westville,2023-12-02,975.58,7577.13,9755.8,Prepaid,Not Active,Yes,Residential,DBN-099,0.45,2018-05-29,2025-03-22
+Steve,Estrada,"4821 Landry Radial, Umlazi, Durban",Umlazi,2024-01-06,320.12,2366.83,3201.2,Smart meter,Active,Yes,Industrial,DBN-100,0.12,2023-07-31,2024-02-01
+Danielle,Coleman,"7436 Rodriguez Light, Westville, Durban",Westville,2024-08-05,158.38,843.65,1583.8,Smart meter,Active,Yes,Business,DBN-101,0.21,2020-04-28,2023-08-24
+Michael,Phillips,"406 Smith Way, Phoenix, Durban",Phoenix,2024-11-01,820.58,7997.07,8205.8,Prepaid,Active,Yes,Residential,DBN-102,0.53,2021-02-17,2024-04-23
+Kimberly,Beltran,"743 Robinson Field, Newlands, Durban",Newlands,2024-09-12,626.0,5605.02,6260.0,Prepaid,Not Active,No,Business,DBN-103,0.33,2021-05-27,2024-12-17
+John,Campos,"210 Kramer Bypass, Morningside, Durban",Morningside,2024-08-11,867.16,8628.38,8671.6,Smart meter,Active,Yes,Business,DBN-104,1.08,2021-09-28,2025-04-13
+Michael,Anderson,"5623 Kristin Wells, Durban North, Durban",Durban North,2024-02-27,250.47,2079.44,2504.7,Prepaid,Active,Yes,Industrial,DBN-105,0.1,2021-04-16,2024-02-07
+Alyssa,Mcintyre,"47451 Mccarty Divide, Newlands, Durban",Newlands,2024-12-24,198.71,1399.43,1987.1,Smart meter,Not Active,Yes,Residential,DBN-106,0.7,2019-08-04,2024-06-08
+Tammy,Dalton,"685 Krystal Bridge, Durban North, Durban",Durban North,2023-12-10,721.61,6144.46,7216.1,Smart meter,Active,Yes,Business,DBN-107,0.26,2023-11-21,2024-06-09
+Amanda,Gibson,"496 Rodriguez Fort, Westville, Durban",Westville,2024-05-19,610.3,5504.62,6103.0,Prepaid,Not Active,Yes,Industrial,DBN-108,0.25,2021-02-15,2025-01-28
+Angel,Henson,"593 Cynthia Mountain, Newlands, Durban",Newlands,2025-04-24,665.25,6347.85,6652.5,Prepaid,Active,Yes,Residential,DBN-109,0.37,2022-06-02,2023-12-13
+Jacqueline,Banks,"20047 Colton Plain, Phoenix, Durban",Phoenix,2023-09-01,615.29,5612.18,6152.9,Smart meter,Not Active,Yes,Business,DBN-110,0.56,2018-09-14,2024-12-04
+Paul,Watson,"869 Nicole Shoal, Morningside, Durban",Morningside,2023-08-03,338.89,2376.48,3388.9,Smart meter,Not Active,No,Industrial,DBN-111,0.16,2021-08-11,2023-07-20
+Martha,Gilbert,"0537 Sampson Walk, Chatsworth, Durban",Chatsworth,2024-02-24,87.87,629.16,878.7,Smart meter,Not Active,Yes,Industrial,DBN-112,0.03,2021-08-30,2024-08-29
+Cory,Jennings,"506 Lopez Crossing, Chatsworth, Durban",Chatsworth,2025-03-07,963.82,8847.67,9638.2,Prepaid,Not Active,Yes,Residential,DBN-113,8.85,2019-07-15,2024-07-16
+Madison,Davis,"90053 Kristin Ford, Phoenix, Durban",Phoenix,2023-07-11,543.02,3915.8,5430.2,Smart meter,Active,No,Business,DBN-114,1.96,2020-07-01,2024-01-24
+Maria,Spencer,"335 Kristina Ranch, Morningside, Durban",Morningside,2023-05-21,496.51,3496.29,4965.1,Smart meter,Active,Yes,Residential,DBN-115,0.22,2018-11-15,2023-07-21
+Joshua,Riggs,"84210 Alexis Turnpike, Isipingo, Durban",Isipingo,2025-01-20,708.99,4566.67,7089.9,Smart meter,Active,No,Business,DBN-116,0.35,2020-10-15,2024-10-14
+John,Morris,"40268 Julie Mountains, Chatsworth, Durban",Chatsworth,2024-05-01,289.78,1616.86,2897.8,Smart meter,Active,No,Business,DBN-117,0.12,2020-07-07,2024-01-13
+Kimberly,Palmer,"78390 Ellis Burgs, Berea, Durban",Berea,2023-07-05,228.2,1553.79,2282.0,Smart meter,Not Active,Yes,Residential,DBN-118,0.07,2021-10-17,2024-08-30
+Yolanda,Boone,"1771 Marc Drive, Durban North, Durban",Durban North,2023-07-09,571.76,5510.83,5717.6,Smart meter,Not Active,Yes,Business,DBN-119,1.38,2021-08-16,2023-09-26
+David,Weber,"856 Chavez Rapids, Umlazi, Durban",Umlazi,2024-04-17,628.43,3894.06,6284.3,Prepaid,Not Active,Yes,Industrial,DBN-120,0.24,2023-11-14,2024-04-28
+Cory,Miles,"836 Beasley Loop, Newlands, Durban",Newlands,2024-02-06,138.55,1380.14,1385.5,Prepaid,Not Active,Yes,Business,DBN-121,0.06,2020-12-28,2024-05-01
+Maria,Ross,"156 Ortega Landing, Phoenix, Durban",Phoenix,2023-09-14,936.02,6046.04,9360.2,Smart meter,Not Active,No,Business,DBN-122,0.4,2018-05-12,2024-12-04
+Gloria,Wells,"11615 Angela Radial, Morningside, Durban",Morningside,2024-07-28,483.95,2769.75,4839.5,Prepaid,Active,Yes,Residential,DBN-123,0.92,2020-12-31,2024-09-08
+Anna,Santiago,"5604 Bell Ports, Westville, Durban",Westville,2024-06-16,372.88,3333.02,3728.8,Smart meter,Active,No,Business,DBN-124,1.11,2021-09-13,2023-12-19
+Jason,Douglas,"15851 Andrews Valley, Westville, Durban",Westville,2024-04-16,600.93,4987.54,6009.3,Prepaid,Not Active,No,Industrial,DBN-125,0.45,2023-06-10,2025-01-23
+Megan,Villegas,"980 Johnson Groves, Isipingo, Durban",Isipingo,2024-11-14,574.32,4432.11,5743.2,Smart meter,Not Active,Yes,Business,DBN-126,0.22,2018-06-28,2023-07-17
+Kathryn,Dorsey,"0229 Jones Streets, Durban North, Durban",Durban North,2024-09-21,413.82,3840.28,4138.2,Smart meter,Active,No,Industrial,DBN-127,0.77,2023-09-17,2024-09-26
+Teresa,Davis,"366 Peterson Land, Morningside, Durban",Morningside,2024-01-16,917.76,6338.19,9177.6,Prepaid,Not Active,Yes,Industrial,DBN-128,2.11,2021-06-16,2024-02-26
+Jennifer,Frank,"910 Eric River, Phoenix, Durban",Phoenix,2023-06-26,967.09,6440.79,9670.9,Prepaid,Not Active,Yes,Industrial,DBN-129,1.29,2022-05-14,2025-01-31
+Emily,Nelson,"679 Perry Forge, Newlands, Durban",Newlands,2024-12-25,64.58,369.45,645.8,Prepaid,Active,No,Business,DBN-130,0.04,2023-10-12,2023-09-21
+William,Reed,"49784 Jeffrey Rapid, Westville, Durban",Westville,2023-06-30,642.1,4486.62,6421.0,Prepaid,Not Active,No,Business,DBN-131,0.22,2018-04-07,2023-09-07
+Adrian,Turner,"24451 Tyler Meadows, Isipingo, Durban",Isipingo,2023-10-02,732.78,6446.27,7327.8,Prepaid,Active,Yes,Industrial,DBN-132,0.31,2023-03-03,2024-10-27
+David,Patel,"88516 Ryan Mount, Westville, Durban",Westville,2025-05-03,759.43,5445.0,7594.3,Prepaid,Active,No,Residential,DBN-133,0.29,2021-09-23,2023-06-16
+Christian,Edwards,"9664 Richard Islands, Phoenix, Durban",Phoenix,2023-09-29,334.49,1720.86,3344.9,Smart meter,Active,No,Industrial,DBN-134,0.1,2019-01-28,2023-07-11
+Laurie,Montgomery,"516 John Radial, Isipingo, Durban",Isipingo,2024-03-25,459.15,2856.37,4591.5,Smart meter,Active,Yes,Business,DBN-135,0.12,2020-01-04,2025-01-13
+Alexandria,Foster,"5352 William Crescent, Phoenix, Durban",Phoenix,2024-07-04,629.02,4348.24,6290.2,Prepaid,Not Active,Yes,Residential,DBN-136,0.4,2023-06-28,2024-02-28
+William,Bullock,"5231 Jonathan Extensions, Durban North, Durban",Durban North,2024-08-28,656.01,4787.46,6560.1,Prepaid,Not Active,No,Business,DBN-137,0.37,2021-01-30,2024-03-12
+Eric,Malone,"27799 Maldonado Port, Newlands, Durban",Newlands,2024-09-29,120.17,1168.79,1201.7,Smart meter,Not Active,No,Residential,DBN-138,0.06,2022-10-29,2023-06-14
+Cynthia,Weber,"527 Taylor Roads, Morningside, Durban",Morningside,2024-01-09,239.26,1656.51,2392.6,Smart meter,Active,Yes,Business,DBN-139,0.1,2023-02-23,2023-09-16
+Laura,Vargas,"8147 Johnson Land, Berea, Durban",Berea,2025-02-22,391.01,2533.5,3910.1,Smart meter,Active,No,Industrial,DBN-140,0.25,2023-10-11,2024-05-03
+Justin,Newman,"99867 Shannon Valleys, Westville, Durban",Westville,2024-08-05,587.63,4953.13,5876.3,Prepaid,Not Active,No,Residential,DBN-141,0.33,2021-02-26,2024-03-03
+Denise,Morris,"8207 Lisa Villages, Durban North, Durban",Durban North,2024-02-09,811.84,4948.18,8118.4,Prepaid,Not Active,Yes,Industrial,DBN-142,0.29,2021-10-11,2025-01-01
+Toni,Miller,"203 Ritter Pine, Chatsworth, Durban",Chatsworth,2024-06-28,664.02,4345.79,6640.2,Smart meter,Active,No,Industrial,DBN-143,0.22,2018-08-27,2024-08-07
+Chelsea,Cox,"6659 Kristina Rue, Phoenix, Durban",Phoenix,2024-02-02,914.15,6064.1,9141.5,Smart meter,Active,Yes,Residential,DBN-144,0.43,2019-03-04,2024-07-04
+Cameron,Davis,"644 Mathew Prairie, Phoenix, Durban",Phoenix,2024-10-15,882.64,6027.8,8826.4,Smart meter,Active,No,Industrial,DBN-145,1.51,2021-02-14,2024-03-24
+Donald,Bailey,"629 Kyle Lane, Morningside, Durban",Morningside,2024-09-29,759.23,5081.96,7592.3,Prepaid,Not Active,Yes,Business,DBN-146,0.22,2020-09-03,2024-10-05
+Latasha,Li,"816 Smith Inlet, Phoenix, Durban",Phoenix,2023-10-06,867.13,7475.6,8671.3,Smart meter,Not Active,Yes,Residential,DBN-147,1.87,2020-05-15,2023-11-29
+Stephanie,Peterson,"3322 Kenneth Turnpike, Berea, Durban",Berea,2023-08-05,301.24,1692.35,3012.4,Smart meter,Not Active,No,Residential,DBN-148,0.08,2018-12-19,2023-06-09
+William,Fernandez,"805 Carla Drives, Isipingo, Durban",Isipingo,2023-09-22,691.09,5084.61,6910.9,Smart meter,Active,Yes,Residential,DBN-149,0.24,2019-08-02,2024-06-10
+Henry,Schwartz,"270 Diaz Stravenue, Morningside, Durban",Morningside,2023-11-19,337.08,2373.54,3370.8,Prepaid,Active,Yes,Industrial,DBN-150,0.13,2022-05-28,2024-03-15

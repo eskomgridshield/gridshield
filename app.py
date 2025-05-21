@@ -24,7 +24,7 @@ load_dotenv()
 DATABASE_URL = os.getenv("DATABASE_URL")
 
 def load_electricity_data():
-    df = pd.read_csv('durban_electricity_data.csv')
+    df = pd.read_csv('durban_electricity_data_enhanced.csv')
     df['Last Purchase Date'] = pd.to_datetime(df['Last Purchase Date'])
     return df
 
